@@ -1,18 +1,10 @@
 package javax.com.lallen.httpserver.parsers;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.com.lallen.httpserver.parsers.RequestParser;
-
 import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
-import java.util.Map;
 
-/**
- * Created by latoyaallen on 2/10/15.
- */
+
 public class RequestParserTest {
     private RequestParser parser;
     public static final String MORE_STUFF = "zombies\r\n" +
@@ -27,17 +19,17 @@ public class RequestParserTest {
 
     @Before
     public void setUp() throws IOException {
-        parser = new RequestParser();
+        parser = new RequestParser(YAY_INPUT);
     }
 
     @Test
     public void itGivesTheStatusLine() throws IOException {
-        assertEquals("Yay /zombies HTTP/1.1", parser.getStatusLine(YAY_INPUT));
+        assertEquals("Yay /zombies HTTP/1.1", parser.getStatusLine());
     }
 
     @Test
     public void itGivesTheVerb() throws IOException {
-        assertEquals("Yay", parser.getVerb(YAY_INPUT));
+        assertEquals("Yay", parser.getVerb());
 
     }
 
