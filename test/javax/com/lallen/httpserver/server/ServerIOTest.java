@@ -19,10 +19,20 @@ public class ServerIOTest {
         String input = "Keep Pushing On";
         byte[] mockInput = input.getBytes();
         Mocket mocket = new Mocket(new ByteArrayInputStream(mockInput), null);
-
         InputStream openSocket = mocket.getInputStream();
         ServerIO serverIO = new ServerIO(openSocket);
 
         assertEquals("Keep Pushing On", serverIO.readRequest());
+    }
+
+    @Test
+    public void itGivesABlankStringForAnEmptyRequest() throws IOException {
+        String input = " ";
+        byte[] mockInput = input.getBytes();
+        Mocket mocket = new Mocket(new ByteArrayInputStream(mockInput), null);
+        InputStream openSocket = mocket.getInputStream();
+        ServerIO serverIO = new ServerIO(openSocket);
+
+        assertEquals(" ", serverIO.readRequest());
     }
 }
