@@ -9,4 +9,8 @@ import java.util.*;
  */
 public class RequestParser {
 
+    public String getStatusLine(String input) {
+        String[] lines = input.split("\r\n");
+        return lines[0];
+    }
 }
