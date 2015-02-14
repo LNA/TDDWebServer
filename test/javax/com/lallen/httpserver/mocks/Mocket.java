@@ -1,6 +1,5 @@
 package javax.com.lallen.httpserver.mocks;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -12,8 +11,12 @@ public class Mocket {
     private InputStream inputStream;
     private OutputStream outputStream;
 
-    public Mocket(InputStream inputStream, OutputStream outputStream){
+    public Mocket(InputStream inputStream, OutputStream outputStream) {
         this.inputStream = inputStream;
         this.outputStream = outputStream;
+    }
+
+    public InputStream getInputStream() {
+        return inputStream;
     }
 }
