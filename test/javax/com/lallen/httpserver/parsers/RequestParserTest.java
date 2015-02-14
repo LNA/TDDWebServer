@@ -14,6 +14,7 @@ import java.util.Map;
  * Created by latoyaallen on 2/10/15.
  */
 public class RequestParserTest {
+    private RequestParser parser;
     public static final String MORE_STUFF = "zombies\r\n" +
             "run!\r\n" +
             "is an awesome game\r\n" +
@@ -24,15 +25,18 @@ public class RequestParserTest {
     private String YAY_INPUT    = "Yay /zombies HTTP/1.1\r\n" +
                                   MORE_STUFF;
 
+    @Before
+    public void setUp() throws IOException {
+        parser = new RequestParser();
+    }
+
     @Test
     public void itGivesTheStatusLine() throws IOException {
-        RequestParser parser = new RequestParser();
         assertEquals("Yay /zombies HTTP/1.1", parser.getStatusLine(YAY_INPUT));
     }
 
     @Test
-    public void itGivestheVerb() throws IOException {
-        RequestParser parser = new RequestParser();
+    public void itGivesTheVerb() throws IOException {
         assertEquals("Yay", parser.getVerb(YAY_INPUT));
 
     }
