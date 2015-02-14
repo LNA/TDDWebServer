@@ -13,4 +13,10 @@ public class RequestParser {
         String[] lines = input.split("\r\n");
         return lines[0];
     }
+
+    public String getVerb(String input) {
+        String statusLine = getStatusLine(input);
+        String[] verb = statusLine.split(" ");
+        return verb[0];
+    }
 }

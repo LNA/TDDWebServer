@@ -21,13 +21,20 @@ public class RequestParserTest {
             "\r\n" +
             "\r\n";
 
-    private String GET_INPUT    = "GET /zombies HTTP/1.1\r\n" +
+    private String YAY_INPUT    = "Yay /zombies HTTP/1.1\r\n" +
                                   MORE_STUFF;
 
     @Test
     public void itGivesTheStatusLine() throws IOException {
         RequestParser parser = new RequestParser();
-        assertEquals("GET /zombies HTTP/1.1", parser.getStatusLine(GET_INPUT));
+        assertEquals("Yay /zombies HTTP/1.1", parser.getStatusLine(YAY_INPUT));
+    }
+
+    @Test
+    public void itGivestheVerb() throws IOException {
+        RequestParser parser = new RequestParser();
+        assertEquals("Yay", parser.getVerb(YAY_INPUT));
+
     }
 
 }
