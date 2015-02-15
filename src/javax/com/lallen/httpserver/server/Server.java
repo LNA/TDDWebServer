@@ -20,7 +20,6 @@ public class Server {
 
     public void start () throws IOException {
         System.out.println("Starting the server");
-        Map<String, String> cookies = new HashMap<String, String>();
 
         while(!serverSocket.isClosed()) {
             Socket openSocket = serverSocket.accept();
@@ -35,9 +34,5 @@ public class Server {
 
     public boolean isClosed() {
         return serverSocket.isClosed();
-    }
-
-    private void appendCookies(Map<String, String> updatedCookies, Map<String, String> cookies) throws IOException {
-        updatedCookies.putAll(cookies);
     }
 }
