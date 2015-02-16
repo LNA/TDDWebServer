@@ -23,6 +23,8 @@ public class Server {
 
         while(!serverSocket.isClosed()) {
             Socket openSocket = serverSocket.accept();
+            ConnectionHandler connectionHandler = new ConnectionHandler(openSocket, directory);
+            connectionHandler.run();
         }
         serverSocket.close();
         System.out.println("Closed connection");

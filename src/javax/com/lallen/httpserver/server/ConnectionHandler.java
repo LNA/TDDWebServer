@@ -1,24 +1,21 @@
 package javax.com.lallen.httpserver.server;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Map;
 import javax.com.lallen.httpserver.parsers.RequestParser;
 import javax.com.lallen.httpserver.request.RequestBuilder;
 import javax.com.lallen.httpserver.routing.RouteFactory;
-import javax.com.lallen.httpserver.routing.Router;
 import javax.com.lallen.httpserver.routing.iRouter;
+import java.net.Socket;
 
-/**
- * Created by latoyaallen on 2/14/15.
- */
 public class ConnectionHandler {
     private final ServerIO io;
     private final String directory;
+    private final Socket openSocket;
 
-    public ConnectionHandler(InputStream in, OutputStream out, String directory) throws IOException {
+    public ConnectionHandler(Socket openSocket, String directory) throws IOException {
+        this.openSocket = openSocket;
         this.directory = directory;
-        this.io = new ServerIO(in, out);
+        this.io = new ServerIO(openSocket.getInputStream(), openSocket.getOutputStream());
     }
 
     public void run() throws IOException {
@@ -32,5 +29,6 @@ public class ConnectionHandler {
         byte[] head = constructedRoute.buildResponseHead();
         byte[] body = constructedRoute.buildResponseBody();
         io.writeResponse(head, body);
+        openSocket.close();
     }
 }
