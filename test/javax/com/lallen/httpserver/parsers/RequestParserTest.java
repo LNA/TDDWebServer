@@ -23,14 +23,8 @@ public class RequestParserTest {
     }
 
     @Test
-    public void itGivesTheStatusLine() throws IOException {
-        assertEquals("Yay /zombies HTTP/1.1", parser.getStatusLine());
-    }
-
-    @Test
     public void itGivesTheVerb() throws IOException {
         assertEquals("Yay", parser.getVerb());
-
     }
 
 }

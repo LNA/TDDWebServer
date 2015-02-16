@@ -7,9 +7,6 @@ import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by latoyaallen on 2/13/15.
- */
 public class ServerIOTest {
     public static final String FULL_INPUT = "Keep Pushing On";
     public static final String EMPTY_INPUT = " ";
@@ -30,7 +27,6 @@ public class ServerIOTest {
         InputStream in = mocket.getInputStream();
         OutputStream out = mocket.getOutputStream();
         ServerIO serverIO = new ServerIO(in, out);
-
 
         assertEquals(" ", serverIO.readRequest());
     }

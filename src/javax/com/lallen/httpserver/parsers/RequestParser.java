@@ -3,11 +3,11 @@ package javax.com.lallen.httpserver.parsers;
 public class RequestParser {
     public final String requestLines;
 
-    public RequestParser(String requsetLines) {
-        this.requestLines = requsetLines;
+    public RequestParser(String requestLines) {
+        this.requestLines = requestLines;
     }
 
-    public String getStatusLine() {
+    private String getStatusLine() {
         String[] lines = requestLines.split("\r\n");
         return lines[0];
     }
