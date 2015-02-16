@@ -27,10 +27,10 @@ public class ConnectionHandler {
         RequestBuilder requestBuilder = new RequestBuilder(parser);
         Map<String,String> request = requestBuilder.buildRequest();
         RouteFactory factory = new RouteFactory();
-        Map<String, iRouter> routes = factory.buildRoutes(); //returns all routes
-        iRouter constructedRoute = routes.get(request.get("Verb")); // gets proper routeBuilder ; GetRouter
+        Map<String, iRouter> routes = factory.buildRoutes();
+        iRouter constructedRoute = routes.get(request.get("Verb"));
         byte[] head = constructedRoute.buildResponseHead();
         byte[] body = constructedRoute.buildResponseBody();
-        io.write(head, body);
+        io.writeResponse(head, body);
     }
 }
