@@ -8,8 +8,8 @@ import java.io.OutputStream;
  * Created by latoyaallen on 2/10/15.
  */
 public class Mocket {
-    private InputStream inputStream;
-    private OutputStream outputStream;
+    public InputStream inputStream;
+    public OutputStream outputStream;
 
     public Mocket(InputStream inputStream, OutputStream outputStream) {
         this.inputStream = inputStream;
