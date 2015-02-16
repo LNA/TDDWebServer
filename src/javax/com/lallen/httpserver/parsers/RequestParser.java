@@ -1,7 +1,7 @@
 package javax.com.lallen.httpserver.parsers;
 
 public class RequestParser {
-    private final String requestLines;
+    public final String requestLines;
 
     public RequestParser(String requsetLines) {
         this.requestLines = requsetLines;

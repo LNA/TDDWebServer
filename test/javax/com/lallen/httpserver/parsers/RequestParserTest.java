@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class RequestParserTest {
-    private RequestParser parser;
+    public RequestParser parser;
     public static final String MORE_STUFF = "zombies\r\n" +
             "run!\r\n" +
             "is an awesome game\r\n" +
