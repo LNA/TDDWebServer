@@ -11,15 +11,16 @@ public class GetRouterTest {
     public static final String LOCATION = "Location: http://localhost:5000/" + "\r\n";
     public static final String BLANK_LINE = "\r\n";
     public static final String HEAD_LINES = ALLOW + STATUS + LOCATION + BLANK_LINE;
+    public static final String BODY       = "<html><head><title></title></head><body>" + "</body></html>";
     public GetRouter getRouter;
-    public byte[] response;
+    public byte[] responseHead;
     public String head;
 
     @Before
     public void setUp() throws IOException {
         getRouter = new GetRouter();
-        response = getRouter.buildResponseHead();
-        head = new String(response, UTF);
+        responseHead = getRouter.buildResponseHead();
+        head = new String(responseHead, UTF);
     }
 
     @Test
@@ -40,5 +41,13 @@ public class GetRouterTest {
     @Test
     public void itGivesTheHeaderInTheCorrectOrder() throws IOException {
         assertEquals(HEAD_LINES, head);
+    }
+
+    @Test
+    public void itGivesHTMLBodyTags() throws IOException {
+        byte[] responseBody = getRouter.buildResponseBody();
+        String body = new String(responseBody, UTF);
+        
+        assertEquals(BODY, body);
     }
 }
