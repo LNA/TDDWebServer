@@ -10,7 +10,7 @@ public class GetRouterTest {
     public static final String STATUS = "HTTP/1.1 200 OK\r\n";
     public static final String LOCATION = "Location: http://localhost:5000/" + "\r\n";
     public static final String BLANK_LINE = "\r\n";
-    public static final String HEAD_LINES = ALLOW + STATUS + LOCATION + BLANK_LINE;
+    public static final String HEAD_LINES = STATUS + ALLOW + LOCATION + BLANK_LINE;
     public static final String BODY       = "<html><head><title></title></head><body>" + "</body></html>";
     public GetRouter getRouter;
     public byte[] responseHead;

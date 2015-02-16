@@ -24,8 +24,8 @@ public class GetRouter implements iRouter {
     }
 
     private void appendLines(StringBuilder stringBuilder) {
-        stringBuilder.append(ALLOW);
         stringBuilder.append(STATUS);
+        stringBuilder.append(ALLOW);
         stringBuilder.append(LOCATION);
         stringBuilder.append(BLANK_LINE);
     }
