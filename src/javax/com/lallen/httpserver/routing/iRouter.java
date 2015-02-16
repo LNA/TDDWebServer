@@ -7,4 +7,5 @@ import java.io.IOException;
  */
 public interface iRouter {
     public byte[] buildResponseHead() throws IOException;
+    public byte[] buildResponseBody() throws IOException;
 }
