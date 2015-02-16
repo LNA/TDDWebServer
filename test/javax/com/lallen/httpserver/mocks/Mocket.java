@@ -19,4 +19,8 @@ public class Mocket {
     public InputStream getInputStream() {
         return inputStream;
     }
+
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
 }
