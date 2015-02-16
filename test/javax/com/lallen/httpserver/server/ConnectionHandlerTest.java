@@ -5,16 +5,14 @@ import javax.com.lallen.httpserver.mocks.Mocket;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+
 import static org.junit.Assert.assertEquals;
 
 public class ConnectionHandlerTest {
-
     @Test
-    public void itDoesSomething() throws IOException {
-        String input = "some input";
-        Mocket mocket = new Mocket(new ByteArrayInputStream(input.getBytes()), null);
-        InputStream openSocket = mocket.getInputStream();
-        MockConnectionHandler handler = new MockConnectionHandler(openSocket, "foo" );
-        assertEquals("I read the request", handler.run());
+    public void itHandlesAConnection() throws IOException {
+        Mocket mocket = new Mocket(null, null);
+        MockConnectionHandler handler = new MockConnectionHandler(null, null, "foo");
     }
 }

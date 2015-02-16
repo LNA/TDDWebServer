@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class RequestParserTest {
-    private RequestParser parser;
+    public RequestParser parser;
     public static final String MORE_STUFF = "zombies\r\n" +
             "run!\r\n" +
             "is an awesome game\r\n" +
@@ -23,14 +23,8 @@ public class RequestParserTest {
     }
 
     @Test
-    public void itGivesTheStatusLine() throws IOException {
-        assertEquals("Yay /zombies HTTP/1.1", parser.getStatusLine());
-    }
-
-    @Test
     public void itGivesTheVerb() throws IOException {
         assertEquals("Yay", parser.getVerb());
-
     }
 
 }

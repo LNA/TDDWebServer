@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RequestBuilder {
-    private Map<String,String> request;
-    private RequestParser parser;
+    public Map<String,String> request;
+    public RequestParser parser;
 
     public RequestBuilder(RequestParser parser) throws IOException {
         this.parser = parser;
@@ -14,11 +14,11 @@ public class RequestBuilder {
 
     public Map<String,String> buildRequest() throws IOException {
         Map<String,String> request = new HashMap<String, String>();
-        request.put("Verb", buildVerb());
+        request.put("Verb", verb());
         return request;
     }
 
-    public String buildVerb() throws IOException {
+    public String verb() throws IOException {
         return parser.getVerb();
     }
 }

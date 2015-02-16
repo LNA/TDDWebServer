@@ -11,7 +11,7 @@ public class RouteFactory {
     public Map<String, iRouter> buildRoutes() throws IOException {
         Map<String,iRouter> routes = new HashMap<>();
         GetRouter getRouter = new GetRouter();
-        routes.put("Get", getRouter);
+        routes.put("GET", getRouter);
 
         return routes;
     }
