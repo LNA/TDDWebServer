@@ -9,11 +9,15 @@ public class GetRouter implements iRouter {
 
     public byte[] buildResponseHead() throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
+        appendLines(stringBuilder);
+        String lines = stringBuilder.toString();
+        return lines.getBytes();
+    }
+
+    private void appendLines(StringBuilder stringBuilder) {
         stringBuilder.append(ALLOW);
         stringBuilder.append(STATUS);
         stringBuilder.append(LOCATION);
         stringBuilder.append(BLANK_LINE);
-        String lines = stringBuilder.toString();
-        return lines.getBytes();
     }
 }
