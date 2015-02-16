@@ -17,12 +17,12 @@ public class RouteFactoryTest {
 
     @Test
     public void itHasAGetKey() throws IOException {
-        assertEquals(true, routes.containsKey("Get"));
+        assertEquals(true, routes.containsKey("GET"));
     }
 
     @Test
     public void itHasGetRoutesValue() throws IOException {
-        assertEquals(true, routes.get("Get") instanceof GetRouter);
+        assertEquals(true, routes.get("GET") instanceof GetRouter);
 
     }
 }

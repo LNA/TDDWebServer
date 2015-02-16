@@ -17,7 +17,7 @@ public class RouterTest {
 
     @Test
     public void itGivesAnInstanceOfGetRouter() throws IOException {
-        iRouter foundRoute = router.sendTo("Get");
+        iRouter foundRoute = router.sendTo("GET");
 
         assertEquals(true, foundRoute instanceof GetRouter);
     }
