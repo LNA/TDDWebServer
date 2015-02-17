@@ -22,11 +22,7 @@ public class Main {
         ServerSocket serverSocket;
         serverSocket = new ServerSocket(parsedPort);
 
-        try {
-            httpServer = new Server(new HttpSocketWrapper(serverSocket), directory);
-            httpServer.start();
-        } catch (IOException  e) {
-            e.printStackTrace();
-        }
+        httpServer = new Server(new HttpSocketWrapper(serverSocket), directory);
+        httpServer.start();
     }
 }

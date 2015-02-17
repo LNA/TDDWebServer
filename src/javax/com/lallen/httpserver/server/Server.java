@@ -18,9 +18,13 @@ public class Server {
         System.out.println("Starting the server");
 
         while(!serverSocket.isClosed()) {
+            try {
             Socket openSocket = serverSocket.accept();
             ConnectionHandler connectionHandler = new ConnectionHandler(openSocket, directory);
             connectionHandler.run();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         serverSocket.close();
         System.out.println("Closed connection");
