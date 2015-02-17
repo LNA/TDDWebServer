@@ -26,7 +26,7 @@ public class ConnectionHandler {
         RouteFactory factory = new RouteFactory();
         Map<String, iRouter> routes = factory.buildRoutes();
         iRouter constructedRoute = routes.get(request.get("Verb"));
-        byte[] head = constructedRoute.buildResponseHead();
+        byte[] head = constructedRoute.buildResponseHead(openSocket.getLocalPort());
         byte[] body = constructedRoute.buildResponseBody();
         io.writeResponse(head, body);
         openSocket.close();

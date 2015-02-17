@@ -4,13 +4,15 @@ import java.io.IOException;
 public class GetRouter implements iRouter {
     public static final String ALLOW = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
     public static final String STATUS = "HTTP/1.1 200 OK\r\n";
-    public static final String LOCATION = "Location: http://localhost:5000/" + "\r\n";
     public static final String BLANK_LINE = "\r\n";
+    public static final String LOCATION = "Location: http://localhost:";
+    public static final String END = "/";
+
 
     @Override
-    public byte[] buildResponseHead() throws IOException {
+    public byte[] buildResponseHead(int port) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
-        appendLines(stringBuilder);
+        appendLines(stringBuilder, port);
         String lines = stringBuilder.toString();
         return lines.getBytes();
     }
@@ -23,10 +25,10 @@ public class GetRouter implements iRouter {
         return body.getBytes();
     }
 
-    private void appendLines(StringBuilder stringBuilder) {
+    private void appendLines(StringBuilder stringBuilder, int port) {
         stringBuilder.append(STATUS);
         stringBuilder.append(ALLOW);
-        stringBuilder.append(LOCATION);
+        stringBuilder.append(LOCATION + port + END + BLANK_LINE);
         stringBuilder.append(BLANK_LINE);
     }
 }
