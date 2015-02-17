@@ -30,6 +30,11 @@ public class RouteFactoryTest {
     }
 
     @Test
+    public void itHasAPostKey() throws IOException {
+        assertEquals(true, routes.containsKey("POST"));
+    }
+
+    @Test
     public void itHasANOptionsKey() throws IOException {
         assertEquals(true, routes.containsKey("OPTIONS"));
     }
@@ -37,12 +42,15 @@ public class RouteFactoryTest {
     @Test
     public void itHasGetRoutesValue() throws IOException {
         assertEquals(true, routes.get("GET") instanceof GetRouter);
-
     }
 
     @Test
     public void itHasOptionsRoutesValue() throws IOException {
         assertEquals(true, routes.get("OPTIONS") instanceof OptionsRouter);
+    }
 
+    @Test
+    public void itHasPostRoutesValue() throws IOException {
+        assertEquals(true, routes.get("POST") instanceof PostRouter);
     }
 }
