@@ -2,10 +2,13 @@ package javax.com.lallen.httpserver.routing;
 import javax.com.lallen.httpserver.response.iHeader;
 import java.io.IOException;
 
-public class GetRouter implements iRouter {
+/**
+ * Created by latoyaallen on 2/17/15.
+ */
+public class OptionsRouter implements iRouter {
     private final iHeader headBuilder;
 
-    public GetRouter(iHeader headBuilder) {
+    public OptionsRouter(iHeader headBuilder) {
         this.headBuilder = headBuilder;
     }
 

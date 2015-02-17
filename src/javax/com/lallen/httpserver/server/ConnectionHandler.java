@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.com.lallen.httpserver.parsers.RequestParser;
 import javax.com.lallen.httpserver.request.RequestBuilder;
+import javax.com.lallen.httpserver.response.HeadBuilder;
 import javax.com.lallen.httpserver.routing.RouteFactory;
 import javax.com.lallen.httpserver.routing.iRouter;
 import java.net.Socket;
@@ -20,11 +21,13 @@ public class ConnectionHandler {
 
     public void run() throws IOException {
         String requestLines = io.readRequest();
+        System.out.println("The request lines are: " + requestLines);
         RequestParser parser = new RequestParser(requestLines);
         RequestBuilder requestBuilder = new RequestBuilder(parser);
         Map<String,String> request = requestBuilder.buildRequest();
-        RouteFactory factory = new RouteFactory();
-        Map<String, iRouter> routes = factory.buildRoutes();
+        HeadBuilder headBuilder = new HeadBuilder();
+        RouteFactory factory = new RouteFactory(headBuilder);
+        Map<String, iRouter> routes = factory.buildRoutes(); //add routes here
         iRouter constructedRoute = routes.get(request.get("Verb"));
         byte[] head = constructedRoute.buildResponseHead(openSocket.getLocalPort());
         byte[] body = constructedRoute.buildResponseBody();

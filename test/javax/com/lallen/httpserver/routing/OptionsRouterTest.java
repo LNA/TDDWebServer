@@ -5,10 +5,10 @@ import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
-public class GetRouterTest {
+public class OptionsRouterTest {
     public static final String UTF = "UTF-8";
     public static final String BODY       = "<html><head><title></title></head><body>" + "</body></html>";
-    public GetRouter getRouter;
+    public OptionsRouter optionsRouter;
     public byte[] responseHead;
     public String head;
     public MockHeadBuilder headBuilder;
@@ -16,8 +16,8 @@ public class GetRouterTest {
     @Before
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
-        getRouter = new GetRouter(headBuilder);
-        responseHead = getRouter.buildResponseHead(1999);
+        optionsRouter = new OptionsRouter(headBuilder);
+        responseHead = optionsRouter.buildResponseHead(4040);
         head = new String(responseHead, UTF);
     }
 
@@ -28,9 +28,9 @@ public class GetRouterTest {
 
     @Test
     public void itGivesHTMLBodyTags() throws IOException {
-        byte[] responseBody = getRouter.buildResponseBody();
+        byte[] responseBody = optionsRouter.buildResponseBody();
         String body = new String(responseBody, UTF);
-        
+
         assertEquals(BODY, body);
     }
 }

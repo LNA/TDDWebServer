@@ -1,6 +1,8 @@
 package javax.com.lallen.httpserver.routing;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.com.lallen.httpserver.response.HeadBuilder;
 import java.io.IOException;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
@@ -8,10 +10,12 @@ import static org.junit.Assert.assertEquals;
 public class RouteFactoryTest {
     private RouteFactory routeFactory;
     private Map<String,iRouter> routes;
+    private HeadBuilder headBuilder;
 
     @Before
     public void setUp() throws IOException {
-        routeFactory = new RouteFactory();
+        headBuilder = new HeadBuilder();
+        routeFactory = new RouteFactory(headBuilder);
         routes = routeFactory.buildRoutes();
     }
 
@@ -21,8 +25,19 @@ public class RouteFactoryTest {
     }
 
     @Test
+    public void itHasANOptionsKey() throws IOException {
+        assertEquals(true, routes.containsKey("OPTIONS"));
+    }
+
+    @Test
     public void itHasGetRoutesValue() throws IOException {
         assertEquals(true, routes.get("GET") instanceof GetRouter);
+
+    }
+
+    @Test
+    public void itHasOptionsRoutesValue() throws IOException {
+        assertEquals(true, routes.get("OPTIONS") instanceof OptionsRouter);
 
     }
 }
