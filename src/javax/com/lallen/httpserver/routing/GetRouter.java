@@ -1,14 +1,13 @@
 package javax.com.lallen.httpserver.routing;
-import javax.com.lallen.httpserver.response.HeadBuilder;
+import javax.com.lallen.httpserver.response.iHeader;
 import java.io.IOException;
 
 public class GetRouter implements iRouter {
-    private final HeadBuilder headBuilder;
+    private final iHeader headBuilder;
 
-    public GetRouter(HeadBuilder headBuilder) {
+    public GetRouter(iHeader headBuilder) {
         this.headBuilder = headBuilder;
     }
-
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {

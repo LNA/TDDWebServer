@@ -1,15 +1,14 @@
 package javax.com.lallen.httpserver.routing;
-
-import javax.com.lallen.httpserver.response.HeadBuilder;
+import javax.com.lallen.httpserver.response.iHeader;
 import java.io.IOException;
 
 /**
  * Created by latoyaallen on 2/17/15.
  */
 public class OptionsRouter implements iRouter {
-    private final HeadBuilder headBuilder;
+    private final iHeader headBuilder;
 
-    public OptionsRouter(HeadBuilder headBuilder) {
+    public OptionsRouter(iHeader headBuilder) {
         this.headBuilder = headBuilder;
     }
 
