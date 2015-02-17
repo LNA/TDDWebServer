@@ -20,10 +20,12 @@ public class RouteFactory {
         GetRouter getRouter = new GetRouter(headBuilder, bodyBuilder);
         OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
         PostRouter postRouter = new PostRouter(headBuilder, bodyBuilder);
+        PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
         routes.put("OPTIONS", optionsRouter);
         routes.put("POST", postRouter);
+        routes.put("PUT", putRouter);
 
         return routes;
     }
