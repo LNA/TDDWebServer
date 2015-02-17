@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.com.lallen.httpserver.parsers.RequestParser;
 import javax.com.lallen.httpserver.request.RequestBuilder;
+import javax.com.lallen.httpserver.response.BodyBuilder;
 import javax.com.lallen.httpserver.response.HeadBuilder;
 import javax.com.lallen.httpserver.routing.RouteFactory;
 import javax.com.lallen.httpserver.routing.iRouter;
@@ -26,7 +27,8 @@ public class ConnectionHandler {
         RequestBuilder requestBuilder = new RequestBuilder(parser);
         Map<String,String> request = requestBuilder.buildRequest();
         HeadBuilder headBuilder = new HeadBuilder();
-        RouteFactory factory = new RouteFactory(headBuilder);
+        BodyBuilder bodyBuilder = new BodyBuilder();
+        RouteFactory factory = new RouteFactory(headBuilder, bodyBuilder);
         Map<String, iRouter> routes = factory.buildRoutes(); //add routes here
         iRouter constructedRoute = routes.get(request.get("Verb"));
         byte[] head = constructedRoute.buildResponseHead(openSocket.getLocalPort());

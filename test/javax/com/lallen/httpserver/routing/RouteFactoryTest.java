@@ -2,7 +2,10 @@ package javax.com.lallen.httpserver.routing;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.com.lallen.httpserver.response.BodyBuilder;
 import javax.com.lallen.httpserver.response.HeadBuilder;
+import javax.com.lallen.httpserver.response.iHeader;
+import javax.com.lallen.httpserver.response.iBody;
 import java.io.IOException;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
@@ -10,12 +13,14 @@ import static org.junit.Assert.assertEquals;
 public class RouteFactoryTest {
     private RouteFactory routeFactory;
     private Map<String,iRouter> routes;
-    private HeadBuilder headBuilder;
+    private iHeader headBuilder;
+    private iBody  bodyBuilder;
 
     @Before
     public void setUp() throws IOException {
         headBuilder = new HeadBuilder();
-        routeFactory = new RouteFactory(headBuilder);
+        bodyBuilder = new BodyBuilder();
+        routeFactory = new RouteFactory(headBuilder, bodyBuilder);
         routes = routeFactory.buildRoutes();
     }
 

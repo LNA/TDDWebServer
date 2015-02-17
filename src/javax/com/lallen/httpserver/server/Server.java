@@ -1,14 +1,10 @@
 package javax.com.lallen.httpserver.server;
-
 import javax.com.lallen.httpserver.sockets.iServerSocket;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by latoyaallen on 2/13/15.
- */
 public class Server {
     private final iServerSocket serverSocket;
     private final String directory;
