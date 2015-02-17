@@ -20,11 +20,12 @@ public class ConnectionHandler {
 
     public void run() throws IOException {
         String requestLines = io.readRequest();
+        System.out.println("The request lines are: " + requestLines);
         RequestParser parser = new RequestParser(requestLines);
         RequestBuilder requestBuilder = new RequestBuilder(parser);
         Map<String,String> request = requestBuilder.buildRequest();
         RouteFactory factory = new RouteFactory();
-        Map<String, iRouter> routes = factory.buildRoutes();
+        Map<String, iRouter> routes = factory.buildRoutes(); //add routes here
         iRouter constructedRoute = routes.get(request.get("Verb"));
         byte[] head = constructedRoute.buildResponseHead(openSocket.getLocalPort());
         byte[] body = constructedRoute.buildResponseBody();
