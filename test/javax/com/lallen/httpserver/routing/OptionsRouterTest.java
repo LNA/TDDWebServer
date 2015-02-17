@@ -1,6 +1,8 @@
 package javax.com.lallen.httpserver.routing;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.com.lallen.httpserver.response.HeadBuilder;
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
@@ -15,10 +17,12 @@ public class OptionsRouterTest {
     public OptionsRouter optionsRouter;
     public byte[] responseHead;
     public String head;
+    public HeadBuilder headBuilder;
 
     @Before
     public void setUp() throws IOException {
-        optionsRouter = new OptionsRouter();
+        headBuilder = new HeadBuilder();
+        optionsRouter = new OptionsRouter(headBuilder);
         responseHead = optionsRouter.buildResponseHead(4040);
         head = new String(responseHead, UTF);
     }

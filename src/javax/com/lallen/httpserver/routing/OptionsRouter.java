@@ -1,23 +1,21 @@
 package javax.com.lallen.httpserver.routing;
 
+import javax.com.lallen.httpserver.response.HeadBuilder;
 import java.io.IOException;
 
 /**
  * Created by latoyaallen on 2/17/15.
  */
 public class OptionsRouter implements iRouter {
-    public static final String ALLOW = "Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
-    public static final String STATUS = "HTTP/1.1 200 OK\r\n";
-    public static final String BLANK_LINE = "\r\n";
-    public static final String LOCATION = "Location: http://localhost:";
-    public static final String END = "/";
+    private final HeadBuilder headBuilder;
+
+    public OptionsRouter(HeadBuilder headBuilder) {
+        this.headBuilder = headBuilder;
+    }
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        appendLines(stringBuilder, port);
-        String lines = stringBuilder.toString();
-        return lines.getBytes();
+        return headBuilder.buildResponseHead(port);
     }
 
     @Override
@@ -26,12 +24,5 @@ public class OptionsRouter implements iRouter {
         body = "<html><head><title></title></head><body>";
         body += "</body></html>";
         return body.getBytes();
-    }
-
-    private void appendLines(StringBuilder stringBuilder, int port) {
-        stringBuilder.append(STATUS);
-        stringBuilder.append(ALLOW);
-        stringBuilder.append(LOCATION + port + END + BLANK_LINE);
-        stringBuilder.append(BLANK_LINE);
     }
 }
