@@ -1,24 +1,31 @@
 package javax.com.lallen.httpserver.routing;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
 public class GetRouterTest {
     public static final String UTF = "UTF-8";
-    public static final String BODY       = "<html><head><title></title></head><body>" + "</body></html>";
     public GetRouter getRouter;
     public byte[] responseHead;
+    public byte[] responseBody;
     public String head;
+    public String body;
     public MockHeadBuilder headBuilder;
+    public MockBodyBuilder bodyBuilder;
 
     @Before
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
-        getRouter = new GetRouter(headBuilder);
+        bodyBuilder = new MockBodyBuilder();
+        getRouter = new GetRouter(headBuilder, bodyBuilder);
         responseHead = getRouter.buildResponseHead(1999);
+        responseBody = getRouter.buildResponseBody();
         head = new String(responseHead, UTF);
+        body = new String(responseBody, UTF);
     }
 
     @Test
@@ -27,10 +34,7 @@ public class GetRouterTest {
     }
 
     @Test
-    public void itGivesHTMLBodyTags() throws IOException {
-        byte[] responseBody = getRouter.buildResponseBody();
-        String body = new String(responseBody, UTF);
-        
-        assertEquals(BODY, body);
+    public void itGivesABlankBody() throws IOException {
+        assertEquals("The body has been constructed.", body);
     }
 }
