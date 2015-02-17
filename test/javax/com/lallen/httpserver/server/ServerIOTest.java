@@ -1,7 +1,5 @@
 package javax.com.lallen.httpserver.server;
-
 import org.junit.Test;
-
 import javax.com.lallen.httpserver.mocks.Mocket;
 import java.io.*;
 
