@@ -25,52 +25,32 @@ public class RouteFactoryTest {
     }
 
     @Test
-    public void itHasAGetKey() throws IOException {
+    public void itHasAGetRoute() throws IOException {
         assertEquals(true, routes.containsKey("GET"));
-    }
-
-    @Test
-    public void itHasAPostKey() throws IOException {
-        assertEquals(true, routes.containsKey("POST"));
-    }
-
-    @Test
-    public void itHasANOptionsKey() throws IOException {
-        assertEquals(true, routes.containsKey("OPTIONS"));
-    }
-
-    @Test
-    public void itHasAPutKey() throws IOException {
-        assertEquals(true, routes.containsKey("PUT"));
-    }
-
-    @Test
-    public void itHasAHeadKey() throws IOException {
-        assertEquals(true, routes.containsKey("HEAD"));
-    }
-
-    @Test
-    public void itHasGetRoutesValue() throws IOException {
         assertEquals(true, routes.get("GET") instanceof GetRouter);
     }
 
     @Test
-    public void itHasOptionsRoutesValue() throws IOException {
-        assertEquals(true, routes.get("OPTIONS") instanceof OptionsRouter);
-    }
-
-    @Test
-    public void itHasPostRoutesValue() throws IOException {
+    public void itHasAPostRoute() throws IOException {
+        assertEquals(true, routes.containsKey("POST"));
         assertEquals(true, routes.get("POST") instanceof PostRouter);
     }
 
     @Test
-    public void itHasPutRoutesValue() throws IOException {
+    public void itHasAnOptionsRoute() throws IOException {
+        assertEquals(true, routes.containsKey("OPTIONS"));
+        assertEquals(true, routes.get("OPTIONS") instanceof OptionsRouter);
+    }
+
+    @Test
+    public void itHasAPutRoute() throws IOException {
+        assertEquals(true, routes.containsKey("PUT"));
         assertEquals(true, routes.get("PUT") instanceof PutRouter);
     }
 
     @Test
-    public void itHasHeadRoutesValue() throws IOException {
-        assertEquals(true, routes.get("HEAD") instanceof HeadRouter);
+    public void itHasARedirectRoute() throws IOException {
+        assertEquals(true, routes.containsKey("REDIRECT"));
+        assertEquals(true, routes.get("REDIRECT") instanceof RedirectRouter);
     }
 }

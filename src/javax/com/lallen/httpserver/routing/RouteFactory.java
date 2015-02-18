@@ -22,12 +22,14 @@ public class RouteFactory {
         PostRouter postRouter = new PostRouter(headBuilder, bodyBuilder);
         PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
         HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
+        RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
         routes.put("OPTIONS", optionsRouter);
         routes.put("POST", postRouter);
         routes.put("PUT", putRouter);
         routes.put("HEAD", headRouter);
+        routes.put("REDIRECT", redirectRouter);
 
         return routes;
     }

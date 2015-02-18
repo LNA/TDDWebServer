@@ -1,10 +1,20 @@
 package javax.com.lallen.httpserver.parsers;
 
 public class RequestParser {
-    public final String requestLines;
+
+    private final String requestLines;
 
     public RequestParser(String requestLines) {
         this.requestLines = requestLines;
+    }
+
+    public String requestType() {
+        String statusLine = getStatusLine();
+        if (statusLine.contains("redirect")) {
+            return "REDIRECT";
+        } else {
+            return getVerb();
+        }
     }
 
     private String getStatusLine() {
@@ -12,9 +22,10 @@ public class RequestParser {
         return lines[0];
     }
 
-    public String getVerb() {
+    private String getVerb() {
         String statusLine = getStatusLine();
         String[] verb = statusLine.split(" ");
-        return verb[0];
+        String casedVerb = verb[0].toUpperCase();
+        return casedVerb;
     }
 }

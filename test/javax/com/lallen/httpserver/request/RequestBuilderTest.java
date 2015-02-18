@@ -18,6 +18,6 @@ public class RequestBuilderTest {
         RequestBuilder builder = new RequestBuilder(parser);
         Map<String,String> request = builder.buildRequest();
 
-        assertEquals("Yay", request.get("Verb"));
+        assertEquals("YAY", request.get("Type"));
     }
 }
