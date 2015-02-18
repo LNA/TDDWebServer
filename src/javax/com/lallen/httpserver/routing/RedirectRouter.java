@@ -3,11 +3,11 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
 import java.io.IOException;
 
-public class OptionsRouter implements iRouter {
+public class RedirectRouter implements iRouter{
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public OptionsRouter(iHeader headBuilder, iBody bodyBuilder) {
+    public RedirectRouter(iHeader headBuilder, iBody bodyBuilder) {
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }

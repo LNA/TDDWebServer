@@ -14,11 +14,11 @@ public class RequestBuilder {
 
     public Map<String,String> buildRequest() throws IOException {
         Map<String,String> request = new HashMap<String, String>();
-        request.put("Verb", verb());
+        request.put("Type", requestType());
         return request;
     }
 
-    public String verb() throws IOException {
-        return parser.getVerb();
+    public String requestType() throws IOException {
+        return parser.requestType();
     }
 }
