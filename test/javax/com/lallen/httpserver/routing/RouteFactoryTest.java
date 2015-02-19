@@ -50,4 +50,10 @@ public class RouteFactoryTest {
         assertEquals(true, routes.containsKey("REDIRECT"));
         assertEquals(true, routes.get("REDIRECT") instanceof RedirectRouter);
     }
+
+    @Test
+    public void itHasADeleteRoute() throws IOException {
+        assertEquals(true, routes.containsKey("DELETE"));
+        assertEquals(true, routes.get("DELETE") instanceof DeleteRouter);
+    }
 }
