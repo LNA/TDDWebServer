@@ -1,9 +1,11 @@
 package javax.com.lallen.httpserver.routing;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iBody;
+import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
+import java.util.Map;
 
-public class GetRouter implements iRouter {
+public class GetRouter implements iResponse {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -18,7 +20,7 @@ public class GetRouter implements iRouter {
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
         return bodyBuilder.buildResponseBody();
     }
 }

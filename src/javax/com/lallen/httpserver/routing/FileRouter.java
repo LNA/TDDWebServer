@@ -1,23 +1,18 @@
 package javax.com.lallen.httpserver.routing;
-
-import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-/**
- * Created by latoyaallen on 2/17/15.
- */
-public class PostRouter implements iResponse {
+public class FileRouter implements iResponse {
     private final iHeader headBuilder;
-    private final iBody bodyBuilder;
 
-    public PostRouter(iHeader headBuilder, iBody bodyBuilder) {
+    public FileRouter(iHeader headBuilder) {
         this.headBuilder = headBuilder;
-        this.bodyBuilder = bodyBuilder;
     }
-
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
         return headBuilder.buildResponseHead(port);
@@ -25,6 +20,9 @@ public class PostRouter implements iResponse {
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        return bodyBuilder.buildResponseBody();
+        String file = request.get("DIRECTORY") + request.get("URI");
+        Path filePath = Paths.get(file);
+        byte[] body   = Files.readAllBytes(filePath);
+        return body;
     }
 }

@@ -1,4 +1,6 @@
 package javax.com.lallen.httpserver.parsers;
+import java.util.Arrays;
+import java.util.List;
 
 public class RequestParser {
 
@@ -12,9 +14,18 @@ public class RequestParser {
         String statusLine = getStatusLine();
         if (statusLine.contains("redirect")) {
             return "REDIRECT";
+        } else if (foundFileFormat()) {
+            return "FILE";
         } else {
             return getVerb();
         }
+    }
+
+    public String uri() {
+        System.out.println(requestLines);
+        String[] breakLine = splitStatusLine();
+        String uri = breakLine[1];
+        return uri;
     }
 
     private String getStatusLine() {
@@ -27,5 +38,29 @@ public class RequestParser {
         String[] verb = statusLine.split(" ");
         String casedVerb = verb[0].toUpperCase();
         return casedVerb;
+    }
+
+    private String[] splitStatusLine() {
+        String[] lines = splitHeaders();
+        String statusLine = lines[0];
+        String[] statusLines = statusLine.split(" ");
+        return statusLines;
+    }
+
+    private String[] splitHeaders() {
+        String[] headerLines = requestLines.split("\r\n");
+        return headerLines;
+    }
+
+    private boolean foundFileFormat() {
+        String casedRequest = requestLines.toUpperCase();
+        List fileFormats = Arrays.asList("FILE", "GIF", "JPEG", "PNG", "TXT");
+        for(int i =0; i < fileFormats.size(); i++) {
+            if (casedRequest.contains((CharSequence) fileFormats.get(i))) {
+            return true;
+        }
+        }
+        return false;
+
     }
 }

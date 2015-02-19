@@ -6,9 +6,11 @@ import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iBody;
-
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OptionsRouterTest {
     public static final String UTF = "UTF-8";
@@ -26,7 +28,8 @@ public class OptionsRouterTest {
         bodyBuilder = new MockBodyBuilder();
         optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = optionsRouter.buildResponseHead(4040);
-        responseBody = optionsRouter.buildResponseBody();
+        Map<String,String> request = new HashMap<>();
+        responseBody = optionsRouter.buildResponseBody(request);
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

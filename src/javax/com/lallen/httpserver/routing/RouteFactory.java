@@ -1,6 +1,7 @@
 package javax.com.lallen.httpserver.routing;
 import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
+import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +15,8 @@ public class RouteFactory {
         this.bodyBuilder = bodyBuilder;
     }
 
-    public Map<String, iRouter> buildRoutes() throws IOException {
-        Map<String,iRouter> routes = new HashMap<>();
+    public Map<String, iResponse> buildRoutes() throws IOException {
+        Map<String,iResponse> routes = new HashMap<>();
 
         GetRouter getRouter = new GetRouter(headBuilder, bodyBuilder);
         OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
@@ -23,6 +24,7 @@ public class RouteFactory {
         PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
         HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
         RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
+        FileRouter fileRouter = new FileRouter(headBuilder);
 
         routes.put("GET", getRouter);
         routes.put("OPTIONS", optionsRouter);
@@ -30,6 +32,7 @@ public class RouteFactory {
         routes.put("PUT", putRouter);
         routes.put("HEAD", headRouter);
         routes.put("REDIRECT", redirectRouter);
+        routes.put("FILE", fileRouter);
 
         return routes;
     }
