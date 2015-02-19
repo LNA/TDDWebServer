@@ -17,6 +17,13 @@ public class RequestParser {
         }
     }
 
+    public String uri() {
+        System.out.println(requestLines);
+        String[] breakLine = splitStatusLine();
+        String uri = breakLine[1];
+        return uri;
+    }
+
     private String getStatusLine() {
         String[] lines = requestLines.split("\r\n");
         return lines[0];
@@ -27,5 +34,17 @@ public class RequestParser {
         String[] verb = statusLine.split(" ");
         String casedVerb = verb[0].toUpperCase();
         return casedVerb;
+    }
+
+    private String[] splitStatusLine() {
+        String[] lines = splitHeaders();
+        String statusLine = lines[0];
+        String[] statusLines = statusLine.split(" ");
+        return statusLines;
+    }
+
+    private String[] splitHeaders() {
+        String[] headerLines = requestLines.split("\r\n");
+        return headerLines;
     }
 }

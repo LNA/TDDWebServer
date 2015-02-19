@@ -19,4 +19,9 @@ public class RequestParserTest {
         assertEquals("REDIRECT", parser.requestType());
     }
 
+    @Test
+    public void itGivesTheRequestURI() throws IOException {
+        parser = new RequestParser("GET /shouldIGetMoreGames?Yes! HTTP/1.1\r\n");
+        assertEquals("/shouldIGetMoreGames?Yes!", parser.uri());
+    }
 }
