@@ -1,4 +1,6 @@
 package javax.com.lallen.httpserver.parsers;
+import java.util.Arrays;
+import java.util.List;
 
 public class RequestParser {
 
@@ -52,6 +54,13 @@ public class RequestParser {
 
     private boolean foundFileFormat() {
         String casedRequest = requestLines.toUpperCase();
-        return casedRequest.contains("FILE");
+        List fileFormats = Arrays.asList("FILE", "GIF", "JPEG", "PNG", "TXT");
+        for(int i =0; i < fileFormats.size(); i++) {
+            if (casedRequest.contains((CharSequence) fileFormats.get(i))) {
+            return true;
+        }
+        }
+        return false;
+
     }
 }

@@ -20,9 +20,9 @@ public class FileRouter implements iResponse {
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        String fileOneString = request.get("DIRECTORY") + request.get("URI");
-        Path fileOnePath = Paths.get(fileOneString);
-        byte[] body      = Files.readAllBytes(fileOnePath);
+        String file = request.get("DIRECTORY") + request.get("URI");
+        Path filePath = Paths.get(file);
+        byte[] body   = Files.readAllBytes(filePath);
         return body;
     }
 }

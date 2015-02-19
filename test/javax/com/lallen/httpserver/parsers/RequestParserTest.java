@@ -19,8 +19,32 @@ public class RequestParserTest {
     }
 
     @Test
-    public void itGivesTheFileRouteRequestType() throws IOException {
+    public void itGivesFileRouteForAFileRequest() throws IOException {
         parser = new RequestParser("Get /IHadTheFileOfMyLife HTTP/1.1\r\n");
+        assertEquals("FILE", parser.requestType());
+    }
+
+    @Test
+    public void itGivesFileRouteForAJPEGRequest() throws IOException {
+        parser = new RequestParser("Get /IHadTheJPEGOfMyLife HTTP/1.1\r\n");
+        assertEquals("FILE", parser.requestType());
+    }
+
+    @Test
+    public void itGivesFileRouteForAGIFRequest() throws IOException {
+        parser = new RequestParser("Get /IHadTheGIFGOfMyLife HTTP/1.1\r\n");
+        assertEquals("FILE", parser.requestType());
+    }
+
+    @Test
+    public void itGivesFileRouteForAPNGRequest() throws IOException {
+        parser = new RequestParser("Get /IHadThepngGOfMyLife HTTP/1.1\r\n");
+        assertEquals("FILE", parser.requestType());
+    }
+
+    @Test
+    public void itGivesFileRouteForATXTRequest() throws IOException {
+        parser = new RequestParser("Get /IHadThetxtGOfMyLife HTTP/1.1\r\n");
         assertEquals("FILE", parser.requestType());
     }
 

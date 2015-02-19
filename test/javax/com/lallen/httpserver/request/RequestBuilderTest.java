@@ -19,6 +19,7 @@ public class RequestBuilderTest {
         builder = new RequestBuilder(parser, "empire");
         request = builder.buildRequest();
         System.out.println("The request " + request);
+
         assertEquals("YAY", request.get("TYPE"));
         assertEquals("/zombies", request.get("URI"));
         assertEquals("empire", request.get("DIRECTORY"));
