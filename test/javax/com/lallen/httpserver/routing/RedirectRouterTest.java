@@ -5,12 +5,13 @@ import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
+import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
 public class RedirectRouterTest {
     public static final String UTF = "UTF-8";
-    public iRouter redirectRouter;
+    public iResponse redirectRouter;
     public byte[] responseHead;
     public byte[] responseBody;
     public String head;
@@ -22,7 +23,7 @@ public class RedirectRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        redirectRouter = new OptionsRouter(headBuilder, bodyBuilder);
+        redirectRouter = new OptionsResponse(headBuilder, bodyBuilder);
         responseHead = redirectRouter.buildResponseHead(90210);
         responseBody = redirectRouter.buildResponseBody();
         head = new String(responseHead, UTF);

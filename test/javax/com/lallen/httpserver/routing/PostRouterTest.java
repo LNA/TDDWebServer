@@ -5,6 +5,7 @@ import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iBody;
+import javax.com.lallen.httpserver.response.iResponse;
 
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class PostRouterTest {
     public static final String UTF = "UTF-8";
-    public iRouter postRouter;
+    public iResponse postRouter;
     public byte[] responseHead;
     public byte[] responseBody;
     public String head;
@@ -27,7 +28,7 @@ public class PostRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        postRouter = new OptionsRouter(headBuilder, bodyBuilder);
+        postRouter = new OptionsResponse(headBuilder, bodyBuilder);
         responseHead = postRouter.buildResponseHead(90210);
         responseBody = postRouter.buildResponseBody();
         head = new String(responseHead, UTF);

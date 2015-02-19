@@ -12,6 +12,8 @@ public class RequestParser {
         String statusLine = getStatusLine();
         if (statusLine.contains("redirect")) {
             return "REDIRECT";
+        } else if (foundFileFormat()) {
+            return "FILE";
         } else {
             return getVerb();
         }
@@ -46,5 +48,10 @@ public class RequestParser {
     private String[] splitHeaders() {
         String[] headerLines = requestLines.split("\r\n");
         return headerLines;
+    }
+
+    private boolean foundFileFormat() {
+        String casedRequest = requestLines.toUpperCase();
+        return casedRequest.contains("FILE");
     }
 }

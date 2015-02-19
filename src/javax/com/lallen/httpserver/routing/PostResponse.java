@@ -1,13 +1,18 @@
 package javax.com.lallen.httpserver.routing;
-import javax.com.lallen.httpserver.response.iHeader;
+
 import javax.com.lallen.httpserver.response.iBody;
+import javax.com.lallen.httpserver.response.iHeader;
+import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 
-public class GetRouter implements iRouter {
+/**
+ * Created by latoyaallen on 2/17/15.
+ */
+public class PostResponse implements iResponse {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public GetRouter(iHeader headBuilder, iBody bodyBuilder) {
+    public PostResponse(iHeader headBuilder, iBody bodyBuilder) {
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }

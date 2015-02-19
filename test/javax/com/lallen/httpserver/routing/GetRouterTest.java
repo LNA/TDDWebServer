@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GetRouterTest {
     public static final String UTF = "UTF-8";
-    public GetRouter getRouter;
+    public GetResponse getRouter;
     public byte[] responseHead;
     public byte[] responseBody;
     public String head;
@@ -21,20 +21,20 @@ public class GetRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        getRouter = new GetRouter(headBuilder, bodyBuilder);
+        getRouter = new GetResponse(headBuilder, bodyBuilder);
         responseHead = getRouter.buildResponseHead(1999);
         responseBody = getRouter.buildResponseBody();
-        head = new String(responseHead, UTF);
-        body = new String(responseBody, UTF);
     }
 
     @Test
     public void itGivesBehaviorOfTheHeadBuilder() throws IOException {
+        head = new String(responseHead, UTF);
         assertEquals("The head has been constructed.", head);
     }
 
     @Test
     public void itGivesABlankBody() throws IOException {
+        body = new String(responseBody, UTF);
         assertEquals("The body has been constructed.", body);
     }
 }

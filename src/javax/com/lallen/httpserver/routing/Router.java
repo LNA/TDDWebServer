@@ -1,14 +1,15 @@
 package javax.com.lallen.httpserver.routing;
+import javax.com.lallen.httpserver.response.iResponse;
 import java.util.Map;
 
 public class Router {
-    private final Map<String,iRouter> routes;
+    private final Map<String,iResponse> routes;
 
-    public Router(Map<String,iRouter> routes) {
+    public Router(Map<String,iResponse> routes) {
         this.routes = routes;
     }
 
-    public iRouter sendTo(String verb) {
+    public iResponse sendTo(String verb) {
         return routes.get(verb);
     }
 }

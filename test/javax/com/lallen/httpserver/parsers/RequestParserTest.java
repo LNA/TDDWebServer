@@ -3,7 +3,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 
-
 public class RequestParserTest {
     public RequestParser parser;
 
@@ -17,6 +16,12 @@ public class RequestParserTest {
     public void itGivesTheRedirectRequestTypeInsteadOfAVerb() throws IOException {
         parser = new RequestParser("Get /redirect HTTP/1.1\r\n");
         assertEquals("REDIRECT", parser.requestType());
+    }
+
+    @Test
+    public void itGivesTheFileRouteRequestType() throws IOException {
+        parser = new RequestParser("Get /IHadTheFileOfMyLife HTTP/1.1\r\n");
+        assertEquals("FILE", parser.requestType());
     }
 
     @Test
