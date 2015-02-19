@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GetRouterTest {
     public static final String UTF = "UTF-8";
-    public GetResponse getRouter;
+    public GetRouter getRouter;
     public byte[] responseHead;
     public byte[] responseBody;
     public String head;
@@ -24,7 +24,7 @@ public class GetRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        getRouter = new GetResponse(headBuilder, bodyBuilder);
+        getRouter = new GetRouter(headBuilder, bodyBuilder);
         responseHead = getRouter.buildResponseHead(1999);
         Map<String,String> request = new HashMap<>();
         responseBody = getRouter.buildResponseBody(request);

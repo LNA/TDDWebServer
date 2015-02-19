@@ -26,7 +26,7 @@ public class RedirectRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        redirectRouter = new OptionsResponse(headBuilder, bodyBuilder);
+        redirectRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = redirectRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
         responseBody = redirectRouter.buildResponseBody(request);

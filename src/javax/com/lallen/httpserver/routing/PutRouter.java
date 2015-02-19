@@ -5,11 +5,11 @@ import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class PutResponse implements iResponse {
+public class PutRouter implements iResponse {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public PutResponse(iHeader headBuilder, iBody bodyBuilder) {
+    public PutRouter(iHeader headBuilder, iBody bodyBuilder) {
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }

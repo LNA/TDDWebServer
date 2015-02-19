@@ -4,18 +4,16 @@ import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-public class FileResponse implements iResponse {
+public class HeadRouter implements iResponse {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public FileResponse(iHeader headBuilder, iBody bodyBuilder) {
+    public HeadRouter(iHeader headBuilder, iBody bodyBuilder) {
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }
+
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
         return headBuilder.buildResponseHead(port);
@@ -23,9 +21,6 @@ public class FileResponse implements iResponse {
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        String fileOneString = request.get("DIRECTORY") + request.get("URI");
-        Path fileOnePath = Paths.get(fileOneString);
-        byte[] body      = Files.readAllBytes(fileOnePath);
-        return body;
+        return bodyBuilder.buildResponseBody();
     }
 }

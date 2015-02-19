@@ -26,7 +26,7 @@ public class PutRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        putRouter = new PutResponse(headBuilder, bodyBuilder);
+        putRouter = new PutRouter(headBuilder, bodyBuilder);
         responseHead = putRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
         responseBody = putRouter.buildResponseBody(request);

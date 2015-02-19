@@ -18,13 +18,13 @@ public class RouteFactory {
     public Map<String, iResponse> buildRoutes() throws IOException {
         Map<String,iResponse> routes = new HashMap<>();
 
-        GetResponse getRouter = new GetResponse(headBuilder, bodyBuilder);
-        OptionsResponse optionsRouter = new OptionsResponse(headBuilder, bodyBuilder);
-        PostResponse postRouter = new PostResponse(headBuilder, bodyBuilder);
-        PutResponse putRouter = new PutResponse(headBuilder, bodyBuilder);
-        HeadResponse headRouter = new HeadResponse(headBuilder, bodyBuilder);
-        RedirectResponse redirectRouter = new RedirectResponse(headBuilder, bodyBuilder);
-        FileResponse fileRouter = new FileResponse(headBuilder, bodyBuilder);
+        GetRouter getRouter = new GetRouter(headBuilder, bodyBuilder);
+        OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
+        PostRouter postRouter = new PostRouter(headBuilder, bodyBuilder);
+        PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
+        HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
+        RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
+        FileRouter fileRouter = new FileRouter(headBuilder);
 
         routes.put("GET", getRouter);
         routes.put("OPTIONS", optionsRouter);

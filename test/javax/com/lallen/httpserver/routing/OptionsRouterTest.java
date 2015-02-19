@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class OptionsRouterTest {
     public static final String UTF = "UTF-8";
-    public OptionsResponse optionsRouter;
+    public OptionsRouter optionsRouter;
     public byte[] responseHead;
     public byte[] responseBody;
     public String head;
@@ -26,7 +26,7 @@ public class OptionsRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        optionsRouter = new OptionsResponse(headBuilder, bodyBuilder);
+        optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = optionsRouter.buildResponseHead(4040);
         Map<String,String> request = new HashMap<>();
         responseBody = optionsRouter.buildResponseBody(request);

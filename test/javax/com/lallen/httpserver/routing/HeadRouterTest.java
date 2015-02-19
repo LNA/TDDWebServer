@@ -26,7 +26,7 @@ public class HeadRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        headRouter = new HeadResponse(headBuilder, bodyBuilder);
+        headRouter = new HeadRouter(headBuilder, bodyBuilder);
         responseHead = headRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
         responseBody = headRouter.buildResponseBody(request);

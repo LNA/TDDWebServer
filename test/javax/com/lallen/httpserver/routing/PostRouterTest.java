@@ -31,7 +31,7 @@ public class PostRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        postRouter = new OptionsResponse(headBuilder, bodyBuilder);
+        postRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = postRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
         responseBody = postRouter.buildResponseBody(request);

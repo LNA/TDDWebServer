@@ -1,15 +1,15 @@
 package javax.com.lallen.httpserver.routing;
-import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
+import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class RedirectResponse implements iResponse {
+public class GetRouter implements iResponse {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public RedirectResponse(iHeader headBuilder, iBody bodyBuilder) {
+    public GetRouter(iHeader headBuilder, iBody bodyBuilder) {
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }
