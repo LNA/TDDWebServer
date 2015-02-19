@@ -3,6 +3,10 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
+import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileResponse implements iResponse {
     private final iHeader headBuilder;
@@ -18,7 +22,10 @@ public class FileResponse implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
-        return bodyBuilder.buildResponseBody();
+    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+        String fileOneString = request.get("DIRECTORY") + request.get("URI");
+        Path fileOnePath = Paths.get(fileOneString);
+        byte[] body      = Files.readAllBytes(fileOnePath);
+        return body;
     }
 }

@@ -8,6 +8,9 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iResponse;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -30,7 +33,8 @@ public class PostRouterTest {
         bodyBuilder = new MockBodyBuilder();
         postRouter = new OptionsResponse(headBuilder, bodyBuilder);
         responseHead = postRouter.buildResponseHead(90210);
-        responseBody = postRouter.buildResponseBody();
+        Map<String,String> request = new HashMap<>();
+        responseBody = postRouter.buildResponseBody(request);
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

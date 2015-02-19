@@ -7,6 +7,8 @@ import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,7 +31,8 @@ public class FileRouterTest {
         bodyBuilder = new MockBodyBuilder();
         fileRouter = new FileResponse(headBuilder, bodyBuilder);
         responseHead = fileRouter.buildResponseHead(227);
-        responseBody = fileRouter.buildResponseBody();
+        Map<String,String> request = new HashMap<>();
+        responseBody = fileRouter.buildResponseBody(request);
     }
 
     @Test

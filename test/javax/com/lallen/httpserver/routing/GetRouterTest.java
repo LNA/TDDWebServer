@@ -5,6 +5,9 @@ import org.junit.Test;
 import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 public class GetRouterTest {
@@ -23,7 +26,8 @@ public class GetRouterTest {
         bodyBuilder = new MockBodyBuilder();
         getRouter = new GetResponse(headBuilder, bodyBuilder);
         responseHead = getRouter.buildResponseHead(1999);
-        responseBody = getRouter.buildResponseBody();
+        Map<String,String> request = new HashMap<>();
+        responseBody = getRouter.buildResponseBody(request);
     }
 
     @Test

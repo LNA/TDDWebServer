@@ -7,6 +7,9 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 public class HeadRouterTest {
@@ -25,7 +28,8 @@ public class HeadRouterTest {
         bodyBuilder = new MockBodyBuilder();
         headRouter = new HeadResponse(headBuilder, bodyBuilder);
         responseHead = headRouter.buildResponseHead(90210);
-        responseBody = headRouter.buildResponseBody();
+        Map<String,String> request = new HashMap<>();
+        responseBody = headRouter.buildResponseBody(request);
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

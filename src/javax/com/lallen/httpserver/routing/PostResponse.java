@@ -4,6 +4,7 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by latoyaallen on 2/17/15.
@@ -23,7 +24,7 @@ public class PostResponse implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
         return bodyBuilder.buildResponseBody();
     }
 }

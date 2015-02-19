@@ -23,8 +23,17 @@ public class ConnectionHandler {
     public void run() throws IOException {
         System.out.println("The IP address: " + openSocket.getInetAddress());
         Map<String, String>request = buildRequest();
-        iResponse constructedRoute = route(request);
-        sendResponseFor(constructedRoute);
+
+        HeadBuilder headBuilder = new HeadBuilder();
+        BodyBuilder bodyBuilder = new BodyBuilder();
+        RouteFactory factory    = new RouteFactory(headBuilder, bodyBuilder);
+
+        Map<String, iResponse> routes = factory.buildRoutes(); //add routes here
+
+        iResponse response = routes.get(request.get("TYPE"));
+        byte[] head = response.buildResponseHead(openSocket.getLocalPort());
+        byte[] body = response.buildResponseBody(request);
+        io.writeResponse(head, body);
         openSocket.close();
     }
 
@@ -34,24 +43,9 @@ public class ConnectionHandler {
         System.out.println("\r\n");
         System.out.println(requestLines);
         RequestParser parser = new RequestParser(requestLines);
-        RequestBuilder requestBuilder = new RequestBuilder(parser);
+        RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
         Map<String,String> request = requestBuilder.buildRequest();
         System.out.println("The request: " + request);
         return request;
-    }
-
-    public iResponse route(Map<String, String> request) throws IOException {
-        HeadBuilder headBuilder = new HeadBuilder();
-        BodyBuilder bodyBuilder = new BodyBuilder();
-        RouteFactory factory = new RouteFactory(headBuilder, bodyBuilder);
-        Map<String, iResponse> routes = factory.buildRoutes(); //add routes here
-        iResponse constructedRoute = routes.get(request.get("Type"));
-        return constructedRoute;
-    }
-
-    public void sendResponseFor(iResponse constructedRoute) throws IOException {
-        byte[] head = constructedRoute.buildResponseHead(openSocket.getLocalPort());
-        byte[] body = constructedRoute.buildResponseBody();
-        io.writeResponse(head, body);
     }
 }

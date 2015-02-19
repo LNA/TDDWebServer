@@ -3,6 +3,7 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iHeader;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
+import java.util.Map;
 
 public class OptionsResponse implements iResponse {
     private final iHeader headBuilder;
@@ -19,7 +20,7 @@ public class OptionsResponse implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
         return bodyBuilder.buildResponseBody();
     }
 }
