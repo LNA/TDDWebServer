@@ -1,37 +1,41 @@
 package javax.com.lallen.httpserver.routing;
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.com.lallen.httpserver.response.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
 public class RouterTest {
-    private RouteFactory routeFactory;
     private Router router;
-    private iHeader headBuilder;
-    private iBody bodyBuilder;
+    private Map<String,String> request;
 
     @Before
     public void setUp() throws IOException {
-        bodyBuilder = new BodyBuilder();
-        headBuilder = new HeadBuilder();
-        routeFactory = new RouteFactory(headBuilder, bodyBuilder);
-        router = new Router(routeFactory.buildRoutes());
+        request = new HashMap<>();
+        router  = new Router(request);
+        request.put("RESOURCE", "some resource");
+        request.put("PATH", "some path");
     }
 
     @Test
-    public void itGivesAnInstanceOfGetRouter() throws IOException {
-        iResponse foundRoute = router.sendTo("GET");
-
-        assertEquals(true, foundRoute instanceof GetRouter);
+    public void itSendsARequestToTheRedirectRoute() throws IOException {
+        request.put("URI", "REDIRECT");
+        assertEquals("REDIRECT", router.sendToRoute());
     }
 
     @Test
-    public void itHandlesAnUnknownRoute() throws IOException {
-        iResponse foundRoute = router.sendTo("My Cell Phone");
-
-        assertEquals(null, foundRoute);
+    public void itSendsARequestToAVerbRoute() throws IOException {
+        request.put("URI", "Some URI");
+        request.put("VERB", "JUMP");
+        assertEquals("JUMP", router.sendToRoute());
     }
+
+//    @Test
+//    public void itSendsARequestToAGetFileRoute() throws IOException {
+//        request.put("URI", "URI.txt");
+//        request.put("VERB", "Get");
+//        assertEquals("GetFileRouter", router.sendToRoute());
+//    }
 }

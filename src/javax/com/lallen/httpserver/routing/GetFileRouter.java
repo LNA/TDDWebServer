@@ -7,10 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileRouter implements iResponse {
+public class GetFileRouter implements iResponse {
     private final iHeader headBuilder;
 
-    public FileRouter(iHeader headBuilder) {
+    public GetFileRouter(iHeader headBuilder) {
         this.headBuilder = headBuilder;
     }
     @Override

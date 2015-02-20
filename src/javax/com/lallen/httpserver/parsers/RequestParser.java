@@ -1,6 +1,4 @@
 package javax.com.lallen.httpserver.parsers;
-import java.util.Arrays;
-import java.util.List;
 
 public class RequestParser {
 
@@ -10,34 +8,28 @@ public class RequestParser {
         this.requestLines = requestLines;
     }
 
-    public String requestType() {
-        String statusLine = getStatusLine();
-        if (statusLine.contains("redirect")) {
-            return "REDIRECT";
-        } else if (foundFileFormat()) {
-            return "FILE";
-        } else {
-            return getVerb();
-        }
-    }
-
-    public String uri() {
-        System.out.println(requestLines);
-        String[] breakLine = splitStatusLine();
-        String uri = breakLine[1];
-        return uri;
-    }
-
-    private String getStatusLine() {
+    public String statusLine() {
         String[] lines = requestLines.split("\r\n");
         return lines[0];
     }
 
-    private String getVerb() {
-        String statusLine = getStatusLine();
+    public String resource() {
+        String statusLine = statusLine();
+        String[] words = statusLine.split(" ");
+        return words[0] + words[1];
+    }
+
+    public String verb() {
+        String statusLine = statusLine();
         String[] verb = statusLine.split(" ");
         String casedVerb = verb[0].toUpperCase();
         return casedVerb;
+    }
+
+    public String uri() {
+        String[] breakLine = splitStatusLine();
+        String uri = breakLine[1];
+        return uri;
     }
 
     private String[] splitStatusLine() {
@@ -50,17 +42,5 @@ public class RequestParser {
     private String[] splitHeaders() {
         String[] headerLines = requestLines.split("\r\n");
         return headerLines;
-    }
-
-    private boolean foundFileFormat() {
-        String casedRequest = requestLines.toUpperCase();
-        List fileFormats = Arrays.asList("FILE", "GIF", "JPEG", "PNG", "TXT");
-        for(int i =0; i < fileFormats.size(); i++) {
-            if (casedRequest.contains((CharSequence) fileFormats.get(i))) {
-            return true;
-        }
-        }
-        return false;
-
     }
 }

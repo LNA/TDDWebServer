@@ -4,6 +4,7 @@ import javax.com.lallen.httpserver.response.iBody;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
+import java.io.File;
 
 public class GetRouter implements iResponse {
     private final iHeader headBuilder;
@@ -21,6 +22,11 @@ public class GetRouter implements iResponse {
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+        String path = request.get("DIRECTORY") + request.get("URI");
+        if (new File(path).isFile()) {
+            GetFileRouter fileRouter = new GetFileRouter(headBuilder);
+            return fileRouter.buildResponseBody(request);
+        }
         return bodyBuilder.buildResponseBody();
     }
 }

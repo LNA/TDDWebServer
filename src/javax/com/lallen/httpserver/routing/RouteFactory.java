@@ -19,21 +19,21 @@ public class RouteFactory {
         Map<String,iResponse> routes = new HashMap<>();
 
         GetRouter getRouter = new GetRouter(headBuilder, bodyBuilder);
+        GetFileRouter getFileRouter = new GetFileRouter(headBuilder);
         OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
         PostRouter postRouter = new PostRouter(headBuilder, bodyBuilder);
         PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
         HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
         RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
-        FileRouter fileRouter = new FileRouter(headBuilder);
         DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
+        routes.put("GetFileRouter", getRouter);
         routes.put("OPTIONS", optionsRouter);
         routes.put("POST", postRouter);
         routes.put("PUT", putRouter);
         routes.put("HEAD", headRouter);
         routes.put("REDIRECT", redirectRouter);
-        routes.put("FILE", fileRouter);
         routes.put("DELETE", deleteRouter);
 
         return routes;

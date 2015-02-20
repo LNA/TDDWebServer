@@ -1,4 +1,5 @@
 package javax.com.lallen.httpserver.parsers;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import java.io.IOException;
@@ -6,51 +7,28 @@ import java.io.IOException;
 public class RequestParserTest {
     public RequestParser parser;
 
-    @Test
-    public void itGivesTheCapitalizedRequestType() throws IOException {
-        parser = new RequestParser("yay /zombies HTTP/1.1\r\n");
-        assertEquals("YAY", parser.requestType());
+    @Before
+    public void setUp() throws IOException {
+        parser = new RequestParser("BOOK /shouldIGetMoreGames?Yes! HTTP/1.1" + "\r\n" + "foobar");
     }
 
     @Test
-    public void itGivesTheRedirectRequestTypeInsteadOfAVerb() throws IOException {
-        parser = new RequestParser("Get /redirect HTTP/1.1\r\n");
-        assertEquals("REDIRECT", parser.requestType());
+    public void itParsesTheResource() throws IOException {
+        assertEquals("BOOK/shouldIGetMoreGames?Yes!", parser.resource());
     }
 
     @Test
-    public void itGivesFileRouteForAFileRequest() throws IOException {
-        parser = new RequestParser("Get /IHadTheFileOfMyLife HTTP/1.1\r\n");
-        assertEquals("FILE", parser.requestType());
+    public void itParsesTheStatusLine() throws IOException {
+        assertEquals("BOOK /shouldIGetMoreGames?Yes! HTTP/1.1", parser.statusLine());
     }
 
     @Test
-    public void itGivesFileRouteForAJPEGRequest() throws IOException {
-        parser = new RequestParser("Get /IHadTheJPEGOfMyLife HTTP/1.1\r\n");
-        assertEquals("FILE", parser.requestType());
+    public void itParsesTheVerb() throws IOException {
+        assertEquals("BOOK", parser.verb());
     }
 
     @Test
-    public void itGivesFileRouteForAGIFRequest() throws IOException {
-        parser = new RequestParser("Get /IHadTheGIFGOfMyLife HTTP/1.1\r\n");
-        assertEquals("FILE", parser.requestType());
-    }
-
-    @Test
-    public void itGivesFileRouteForAPNGRequest() throws IOException {
-        parser = new RequestParser("Get /IHadThepngGOfMyLife HTTP/1.1\r\n");
-        assertEquals("FILE", parser.requestType());
-    }
-
-    @Test
-    public void itGivesFileRouteForATXTRequest() throws IOException {
-        parser = new RequestParser("Get /IHadThetxtGOfMyLife HTTP/1.1\r\n");
-        assertEquals("FILE", parser.requestType());
-    }
-
-    @Test
-    public void itGivesTheRequestURI() throws IOException {
-        parser = new RequestParser("GET /shouldIGetMoreGames?Yes! HTTP/1.1\r\n");
+    public void itParsesTheURI() throws IOException {
         assertEquals("/shouldIGetMoreGames?Yes!", parser.uri());
     }
 }

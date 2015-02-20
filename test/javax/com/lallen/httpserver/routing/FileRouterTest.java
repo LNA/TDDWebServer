@@ -6,9 +6,6 @@ import org.junit.Test;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +24,7 @@ public class FileRouterTest {
     @Before
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
-        fileRouter = new FileRouter(headBuilder);
+        fileRouter = new GetFileRouter(headBuilder);
         responseHead = fileRouter.buildResponseHead(227);
         Map<String,String> request = new HashMap<>();
     }
