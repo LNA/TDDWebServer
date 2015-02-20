@@ -20,6 +20,7 @@ public class RouteFactory {
 
         GetRouter getRouter = new GetRouter(headBuilder, bodyBuilder);
         GetFileRouter getFileRouter = new GetFileRouter(headBuilder);
+        PatchFileRouter patchFileRouter = new PatchFileRouter(headBuilder, bodyBuilder);
         OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
         PostRouter postRouter = new PostRouter(headBuilder, bodyBuilder);
         PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
@@ -29,6 +30,7 @@ public class RouteFactory {
 
         routes.put("GET", getRouter);
         routes.put("GetFileRouter", getFileRouter);
+        routes.put("PatchFileRouter", patchFileRouter);
         routes.put("OPTIONS", optionsRouter);
         routes.put("POST", postRouter);
         routes.put("PUT", putRouter);

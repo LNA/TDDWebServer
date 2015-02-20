@@ -10,6 +10,7 @@ import java.util.Map;
  * Created by latoyaallen on 2/17/15.
  */
 public class PostRouter implements iResponse {
+    public static final String STATUS = "HTTP/1.1 200 OK\r\n";
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -20,7 +21,7 @@ public class PostRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port);
+        return headBuilder.buildResponseHead(port, STATUS);
     }
 
     @Override

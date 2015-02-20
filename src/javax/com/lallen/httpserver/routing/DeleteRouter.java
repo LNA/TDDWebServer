@@ -18,7 +18,7 @@ public class DeleteRouter implements iResponse{
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port);
+        return headBuilder.buildResponseHead(port, "200 OK");
     }
 
     @Override

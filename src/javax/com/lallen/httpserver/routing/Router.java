@@ -12,6 +12,8 @@ public class Router {
     public String sendToRoute() {
         if (request.get("URI").equals("REDIRECT")) {
             return "REDIRECT";
+        } else if (new File(request.get("PATH")).isFile() && request.get("VERB").equals("PATCH")) {
+            return "PatchFileRouter";
         } else if (new File(request.get("PATH")).isFile() && request.get("VERB").equals("GET")) {
             return "GetFileRouter";
         } else {

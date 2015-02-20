@@ -16,7 +16,7 @@ public class RedirectRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port);
+        return headBuilder.buildResponseHead(port, "302 Found");
     }
 
     @Override

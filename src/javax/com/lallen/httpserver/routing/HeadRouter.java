@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class HeadRouter implements iResponse {
+    public static final String STATUS = "HTTP/1.1 200 OK\r\n";
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -16,7 +17,7 @@ public class HeadRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port);
+        return headBuilder.buildResponseHead(port, STATUS);
     }
 
     @Override
