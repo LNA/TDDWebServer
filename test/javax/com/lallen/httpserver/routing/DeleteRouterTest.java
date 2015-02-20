@@ -1,21 +1,16 @@
 package javax.com.lallen.httpserver.routing;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by latoyaallen on 2/19/15.
- */
 public class DeleteRouterTest {
     public static final String UTF = "UTF-8";
+    public static final String NEW_LINE = "\r\n";
     public DeleteRouter deleteRouter;
     public byte[] responseHead;
     public byte[] responseBody;
@@ -43,6 +38,6 @@ public class DeleteRouterTest {
     @Test
     public void itGivesABlankBody() throws IOException {
         body = new String(responseBody, UTF);
-        assertEquals("The body has been constructed.", body);
+        assertEquals(NEW_LINE, body);
     }
 }

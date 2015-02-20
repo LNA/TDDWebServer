@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class DeleteRouter implements iResponse{
-    public static final String BLANK_LINE = "\r\n";
+    public static final String NEW_LINE = "\r\n";
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -23,7 +23,7 @@ public class DeleteRouter implements iResponse{
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        String body = BLANK_LINE;
+        String body = NEW_LINE;
         return body.getBytes();
     }
 }
