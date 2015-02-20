@@ -16,13 +16,14 @@ public class RequestBuilderTest {
     @Test
     public void itBuildsARequest() throws IOException {
         parser = new RequestParser(YAY_INPUT);
-        builder = new RequestBuilder(parser, "empire");
+        builder = new RequestBuilder(parser, "/folder/empire");
         request = builder.buildRequest();
 
         assertEquals("Yay/zombies", request.get("RESOURCE"));
         assertEquals("Yay /zombies HTTP/1.1", request.get("STATUS LINE"));
         assertEquals("YAY", request.get("VERB"));
         assertEquals("/zombies", request.get("URI"));
-        assertEquals("empire", request.get("DIRECTORY"));
+        assertEquals("/folder/empire", request.get("DIRECTORY"));
+        assertEquals("/folder/empire/zombies", request.get("PATH"));
     }
 }

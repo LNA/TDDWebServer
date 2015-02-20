@@ -20,6 +20,7 @@ public class RequestBuilder {
         request.put("VERB", verb());
         request.put("URI", requestURI());
         request.put("DIRECTORY", directory);
+        request.put("PATH", request.get("DIRECTORY") + request.get("URI"));
         return request;
     }
 
