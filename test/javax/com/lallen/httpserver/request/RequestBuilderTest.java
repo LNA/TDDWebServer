@@ -18,9 +18,9 @@ public class RequestBuilderTest {
         parser = new RequestParser(YAY_INPUT);
         builder = new RequestBuilder(parser, "empire");
         request = builder.buildRequest();
-        System.out.println("The request " + request);
 
-        assertEquals("YAY", request.get("TYPE"));
+        assertEquals("Yay /zombies HTTP/1.1", request.get("STATUS LINE"));
+        assertEquals("YAY", request.get("VERB"));
         assertEquals("/zombies", request.get("URI"));
         assertEquals("empire", request.get("DIRECTORY"));
     }

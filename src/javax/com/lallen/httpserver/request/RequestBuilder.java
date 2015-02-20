@@ -15,17 +15,22 @@ public class RequestBuilder {
 
     public Map<String,String> buildRequest() throws IOException {
         Map<String,String> request = new HashMap<String, String>();
-        request.put("TYPE", requestType());
+        request.put("STATUS LINE", statusLine());
+        request.put("VERB", verb());
         request.put("URI", requestURI());
         request.put("DIRECTORY", directory);
         return request;
     }
 
-    public String requestType() throws IOException {
-        return parser.requestType();
+    private String verb() throws IOException {
+        return parser.verb();
     }
 
-    public String requestURI() throws IOException {
+    private String requestURI() throws IOException {
         return parser.uri();
+    }
+
+    private String statusLine() throws IOException {
+        return parser.statusLine();
     }
 }
