@@ -15,6 +15,8 @@ public class RouterTest {
     public void setUp() throws IOException {
         request = new HashMap<>();
         router  = new Router(request);
+        request.put("RESOURCE", "some resource");
+        request.put("PATH", "some path");
     }
 
     @Test
@@ -29,4 +31,11 @@ public class RouterTest {
         request.put("VERB", "JUMP");
         assertEquals("JUMP", router.sendToRoute());
     }
+
+//    @Test
+//    public void itSendsARequestToAGetFileRoute() throws IOException {
+//        request.put("URI", "URI.txt");
+//        request.put("VERB", "Get");
+//        assertEquals("GetFileRouter", router.sendToRoute());
+//    }
 }
