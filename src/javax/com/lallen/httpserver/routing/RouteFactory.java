@@ -28,7 +28,7 @@ public class RouteFactory {
         DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
-        routes.put("GetFileRouter", getRouter);
+        routes.put("GetFileRouter", getFileRouter);
         routes.put("OPTIONS", optionsRouter);
         routes.put("POST", postRouter);
         routes.put("PUT", putRouter);
