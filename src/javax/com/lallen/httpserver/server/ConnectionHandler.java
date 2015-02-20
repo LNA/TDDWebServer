@@ -6,6 +6,7 @@ import javax.com.lallen.httpserver.request.RequestBuilder;
 import javax.com.lallen.httpserver.response.BodyBuilder;
 import javax.com.lallen.httpserver.response.HeadBuilder;
 import javax.com.lallen.httpserver.routing.RouteFactory;
+import javax.com.lallen.httpserver.routing.Router;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.net.Socket;
 
@@ -21,31 +22,24 @@ public class ConnectionHandler {
     }
 
     public void run() throws IOException {
-        System.out.println("The IP address: " + openSocket.getInetAddress());
-        Map<String, String>request = buildRequest();
+        String requestLines = io.readRequest();
+        System.out.println("The request lines are: " + "" + requestLines);
+        RequestParser parser = new RequestParser(requestLines);
+        RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
 
-        HeadBuilder headBuilder = new HeadBuilder();
-        BodyBuilder bodyBuilder = new BodyBuilder();
-        RouteFactory factory    = new RouteFactory(headBuilder, bodyBuilder);
+        Map<String, String> request = requestBuilder.buildRequest();
+        HeadBuilder headBuilder   = new HeadBuilder();
+        BodyBuilder bodyBuilder   = new BodyBuilder();
 
-        Map<String, iResponse> routes = factory.buildRoutes(); //add routes here
-
-        iResponse response = routes.get(request.get("TYPE"));
+        RouteFactory routeFactory = new RouteFactory(headBuilder, bodyBuilder);
+        Map<String, iResponse> routes = routeFactory.buildRoutes();
+        Router router = new Router(request);
+        String requestedRoute = router.sendToRoute();
+        System.out.println("The requestedRoute is: " + requestedRoute);
+        iResponse response = routes.get(requestedRoute);
         byte[] head = response.buildResponseHead(openSocket.getLocalPort());
         byte[] body = response.buildResponseBody(request);
         io.writeResponse(head, body);
         openSocket.close();
-    }
-
-    public Map<String, String> buildRequest() throws IOException {
-        String requestLines = io.readRequest();
-        System.out.println("The request lines are: " + "" + requestLines);
-        System.out.println("\r\n");
-        System.out.println(requestLines);
-        RequestParser parser = new RequestParser(requestLines);
-        RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
-        Map<String,String> request = requestBuilder.buildRequest();
-        System.out.println("The request: " + request);
-        return request;
     }
 }

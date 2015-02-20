@@ -13,6 +13,11 @@ public class RequestParserTest {
     }
 
     @Test
+    public void itParsesTheResource() throws IOException {
+        assertEquals("BOOK/shouldIGetMoreGames?Yes!", parser.resource());
+    }
+
+    @Test
     public void itParsesTheStatusLine() throws IOException {
         assertEquals("BOOK /shouldIGetMoreGames?Yes! HTTP/1.1", parser.statusLine());
     }

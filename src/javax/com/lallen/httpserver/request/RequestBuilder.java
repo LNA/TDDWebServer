@@ -15,6 +15,7 @@ public class RequestBuilder {
 
     public Map<String,String> buildRequest() throws IOException {
         Map<String,String> request = new HashMap<String, String>();
+        request.put("RESOURCE", resource());
         request.put("STATUS LINE", statusLine());
         request.put("VERB", verb());
         request.put("URI", requestURI());
@@ -32,5 +33,9 @@ public class RequestBuilder {
 
     private String statusLine() throws IOException {
         return parser.statusLine();
+    }
+
+    private String resource() throws IOException {
+        return parser.resource();
     }
 }

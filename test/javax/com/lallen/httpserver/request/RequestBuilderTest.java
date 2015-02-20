@@ -19,6 +19,7 @@ public class RequestBuilderTest {
         builder = new RequestBuilder(parser, "empire");
         request = builder.buildRequest();
 
+        assertEquals("Yay/zombies", request.get("RESOURCE"));
         assertEquals("Yay /zombies HTTP/1.1", request.get("STATUS LINE"));
         assertEquals("YAY", request.get("VERB"));
         assertEquals("/zombies", request.get("URI"));

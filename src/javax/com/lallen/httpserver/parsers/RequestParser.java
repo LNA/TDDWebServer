@@ -13,6 +13,12 @@ public class RequestParser {
         return lines[0];
     }
 
+    public String resource() {
+        String statusLine = statusLine();
+        String[] words = statusLine.split(" ");
+        return words[0] + words[1];
+    }
+
     public String verb() {
         String statusLine = statusLine();
         String[] verb = statusLine.split(" ");

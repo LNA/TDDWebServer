@@ -24,7 +24,6 @@ public class RouteFactory {
         PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
         HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
         RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
-        FileRouter fileRouter = new FileRouter(headBuilder);
         DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
@@ -33,7 +32,6 @@ public class RouteFactory {
         routes.put("PUT", putRouter);
         routes.put("HEAD", headRouter);
         routes.put("REDIRECT", redirectRouter);
-        routes.put("FILE", fileRouter);
         routes.put("DELETE", deleteRouter);
 
         return routes;
