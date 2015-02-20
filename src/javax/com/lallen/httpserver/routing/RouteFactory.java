@@ -18,7 +18,7 @@ public class RouteFactory {
     public Map<String, iResponse> buildRoutes() throws IOException {
         Map<String,iResponse> routes = new HashMap<>();
 
-        GetRouter getRouter = new GetRouter(headBuilder, bodyBuilder);
+        GetRouter getRouter = new GetRouter(headBuilder);
         GetFileRouter getFileRouter = new GetFileRouter(headBuilder);
         PatchFileRouter patchFileRouter = new PatchFileRouter(headBuilder, bodyBuilder);
         OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);

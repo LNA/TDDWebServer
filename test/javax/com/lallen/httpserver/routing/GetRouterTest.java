@@ -18,13 +18,11 @@ public class GetRouterTest {
     public String head;
     public String body;
     public MockHeadBuilder headBuilder;
-    public MockBodyBuilder bodyBuilder;
 
     @Before
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
-        bodyBuilder = new MockBodyBuilder();
-        getRouter = new GetRouter(headBuilder, bodyBuilder);
+        getRouter = new GetRouter(headBuilder);
         responseHead = getRouter.buildResponseHead(1999);
         Map<String,String> request = new HashMap<>();
         responseBody = getRouter.buildResponseBody(request);
@@ -37,7 +35,7 @@ public class GetRouterTest {
     }
 
     @Test
-    public void itGivesABlankBody() throws IOException {
+    public void itGivesABodyWithFileLinks() throws IOException {
         body = new String(responseBody, UTF);
         assertEquals("The body has been constructed.", body);
     }
