@@ -19,7 +19,7 @@ public class HeadBuilderTest {
     @Before
     public void setUp() throws IOException {
         headBuilder = new HeadBuilder();
-        responseHead = headBuilder.buildResponseHead(4040);
+        responseHead = headBuilder.buildResponseHead(4040, "200 OK");
         head = new String(responseHead, UTF);
     }
 

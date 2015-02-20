@@ -9,7 +9,7 @@ import java.io.IOException;
 public class MockHeadBuilder implements iHeader {
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
+    public byte[] buildResponseHead(int por, String status) throws IOException {
         String headBuilt = "The head has been constructed.";
         return headBuilt.getBytes();
     }

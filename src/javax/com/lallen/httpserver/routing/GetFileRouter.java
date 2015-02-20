@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GetFileRouter implements iResponse {
+    public static final String STATUS = "HTTP/1.1 200 OK\r\n";
     private final iHeader headBuilder;
 
     public GetFileRouter(iHeader headBuilder) {
@@ -15,7 +16,7 @@ public class GetFileRouter implements iResponse {
     }
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port);
+        return headBuilder.buildResponseHead(port, STATUS);
     }
 
     @Override
