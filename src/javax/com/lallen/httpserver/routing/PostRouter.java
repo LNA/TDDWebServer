@@ -6,9 +6,6 @@ import javax.com.lallen.httpserver.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
 
-/**
- * Created by latoyaallen on 2/17/15.
- */
 public class PostRouter implements iResponse {
     public static final String STATUS = "HTTP/1.1 200 OK\r\n";
     private final iHeader headBuilder;

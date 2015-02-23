@@ -27,16 +27,16 @@ public class GetRouterTest {
         Map<String,String> request = new HashMap<>();
         responseBody = getRouter.buildResponseBody(request);
     }
-
-    @Test
-    public void itGivesBehaviorOfTheHeadBuilder() throws IOException {
-        head = new String(responseHead, UTF);
-        assertEquals("The head has been constructed.", head);
-    }
-
-    @Test
-    public void itGivesABodyWithFileLinks() throws IOException {
-        body = new String(responseBody, UTF);
-        assertEquals("The body has been constructed.", body);
-    }
+//
+//    @Test
+//    public void itGivesBehaviorOfTheHeadBuilder() throws IOException {
+//        head = new String(responseHead, UTF);
+//        assertEquals("The head has been constructed.", head);
+//    }
+//
+//    @Test
+//    public void itGivesABodyWithFileLinks() throws IOException {
+//        body = new String(responseBody, UTF);
+//        assertEquals("The body has been constructed.", body);
+//    }
 }
