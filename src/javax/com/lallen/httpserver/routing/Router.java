@@ -12,6 +12,7 @@ public class Router {
 
     public String sendToRoute() {
         Map<Boolean, String> routes = buildRoutes();
+        System.out.println("Request : " + request);
 
         if (noRouteFound(routes)) {
             return request.get("VERB");
@@ -34,7 +35,7 @@ public class Router {
     }
 
     private boolean redirect() {
-        return request.get("URI").equals("REDIRECT");
+        return request.get("URI").equals("/redirect");
     }
 
     private boolean patchFile() {
