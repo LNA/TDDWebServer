@@ -12,6 +12,7 @@ public class Router {
 
     public String sendToRoute() {
         Map<Boolean, String> routes = buildRoutes();
+        System.out.println(request);
 
         if (noRouteFound(routes)) {
             return request.get("VERB");
@@ -20,7 +21,7 @@ public class Router {
         }
     }
 
-    public Map<Boolean, String> buildRoutes() {
+    private Map<Boolean, String> buildRoutes() {
         Map<Boolean, String> routes = new HashMap<>();
         routes.put(redirect(),       "REDIRECT");
         routes.put(patchFile(),      "PatchFileRouter");
@@ -47,7 +48,6 @@ public class Router {
     }
 
     private boolean authentication() {
-        System.out.println(request + " in router");
         return request.get("URI").equals("/logs") || request.get("HEADERS").contains("Authentication");
     }
 }
