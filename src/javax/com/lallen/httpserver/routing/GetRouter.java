@@ -30,12 +30,15 @@ public class GetRouter implements iResponse {
 
         for (File file : listOfFiles) {
             if (file.isFile()) {
-               links += "<a href=\"" + "/" + file.getName() + "\">" + file.getName() + "</a></br>";
+               links += "<a href=\"" + "/" + fileName(file) + "\">" + fileName(file) + "</a></br>";
             }
         }
-
-        links += "<a href=\"/file1\">file1</a></br>";
         links += "</body></html>";
+
         return links.getBytes();
+    }
+
+    private String fileName(File file) throws IOException {
+        return file.getName();
     }
 }
