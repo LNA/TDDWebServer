@@ -1,6 +1,6 @@
 package javax.com.lallen.httpserver.routing;
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Router {
@@ -11,15 +11,30 @@ public class Router {
     }
 
     public String sendToRoute() {
-        if (request.get("URI").equals("REDIRECT")) {
-            return "REDIRECT";
-        } else if (patchFile()) {
-            return "PatchFileRouter";
-        } else if (getFile()) {
-            return "GetFileRouter";
-        } else {
+        Map<Boolean, String> routes = buildRoutes();
+
+        if (noRouteFound(routes)) {
             return request.get("VERB");
+        } else {
+            return routes.get(true);
         }
+    }
+
+    public Map<Boolean, String> buildRoutes() {
+        Map<Boolean, String> routes = new HashMap<>();
+        routes.put(redirect(), "REDIRECT");
+        routes.put(patchFile(), "PatchFileRouter");
+        routes.put(getFile(), "GetFileRouter");
+        routes.put(redirect(), "REDIRECT");
+        return routes;
+    }
+
+    private boolean noRouteFound (Map<Boolean, String> routes) {
+        return routes.get(true) == null;
+    }
+
+    private boolean redirect() {
+        return request.get("URI").equals("REDIRECT");
     }
 
     private boolean patchFile() {

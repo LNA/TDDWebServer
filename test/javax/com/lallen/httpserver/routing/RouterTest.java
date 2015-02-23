@@ -32,6 +32,8 @@ public class RouterTest {
         assertEquals("JUMP", router.sendToRoute());
     }
 
+    //Figure out how to mock out Java file and Java path so that I can test File Routes
+
 //    @Test
 //    public void itSendsARequestToAGetFileRoute() throws IOException {
 //        request.put("URI", "URI.txt");

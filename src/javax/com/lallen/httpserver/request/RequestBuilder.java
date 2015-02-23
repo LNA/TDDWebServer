@@ -21,6 +21,7 @@ public class RequestBuilder {
         request.put("URI", requestURI());
         request.put("DIRECTORY", directory);
         request.put("PATH", request.get("DIRECTORY") + request.get("URI"));
+        request.put("HEADERS", headers());
         return request;
     }
 
@@ -38,5 +39,9 @@ public class RequestBuilder {
 
     private String resource() throws IOException {
         return parser.resource();
+    }
+
+    private String headers() throws IOException {
+        return parser.headers();
     }
 }
