@@ -1,16 +1,22 @@
 package javax.com.lallen.httpserver.routing;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
-public class DeleteRouterTest {
+/**
+ * Created by latoyaallen on 2/23/15.
+ */
+public class MethodNotAllowedRouterTest {
     public static final String UTF = "UTF-8";
-    public DeleteRouter deleteRouter;
+    public MethodNotAllowedRouter methodNotAllowedRouter;
     public byte[] responseHead;
     public byte[] responseBody;
     public String head;
@@ -22,10 +28,10 @@ public class DeleteRouterTest {
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
         bodyBuilder = new MockBodyBuilder();
-        deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
-        responseHead = deleteRouter.buildResponseHead(1999);
+        methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
+        responseHead = methodNotAllowedRouter.buildResponseHead(1999);
         Map<String,String> request = new HashMap<>();
-        responseBody = deleteRouter.buildResponseBody(request);
+        responseBody = methodNotAllowedRouter.buildResponseBody(request);
     }
 
     @Test

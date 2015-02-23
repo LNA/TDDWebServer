@@ -22,7 +22,7 @@ public class RouterTest {
 
     @Test
     public void itSendsARequestToTheRedirectRoute() throws IOException {
-        request.put("URI", "REDIRECT");
+        request.put("URI", "/redirect");
         assertEquals("REDIRECT", router.sendToRoute());
     }
 
@@ -47,9 +47,7 @@ public class RouterTest {
         assertEquals("AUTHENTICATION", router.sendToRoute());
     }
 
-
-
-    //Figure out how to mock out Java file and Java path so that I can test File Routes
+    //Figure out how to mock out Java file and Java path so that I can test any routes that depend on checking for a File.
 
 //    @Test
 //    public void itSendsARequestToAGetFileRoute() throws IOException {
