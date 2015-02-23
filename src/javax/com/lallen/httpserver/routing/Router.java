@@ -23,10 +23,11 @@ public class Router {
 
     private Map<Boolean, String> buildRoutes() {
         Map<Boolean, String> routes = new HashMap<>();
-        routes.put(redirect(),       "REDIRECT");
-        routes.put(patchFile(),      "PatchFileRouter");
-        routes.put(getFile(),        "GetFileRouter");
-        routes.put(authentication(), "AUTHENTICATION");
+        routes.put(redirect(),         "REDIRECT");
+        routes.put(patchFile(),        "PatchFileRouter");
+        routes.put(getFile(),          "GetFileRouter");
+        routes.put(authentication(),   "AUTHENTICATION");
+        routes.put(methodNotAllowed(), "MethodNotAllowed");
         return routes;
     }
 
@@ -48,5 +49,13 @@ public class Router {
 
     private boolean authentication() {
         return request.get("URI").equals("/logs") || request.get("HEADERS").contains("Authentication");
+    }
+
+    private boolean methodNotAllowed() {
+        return new File(request.get("PATH")).isFile() && putOrPostRequest();
+    }
+
+    private boolean putOrPostRequest() {
+        return request.get("VERB").equals("PUT") || request.get("VERB").equals("POST");
     }
 }

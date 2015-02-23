@@ -56,4 +56,10 @@ public class RouteFactoryTest {
         assertEquals(true, routes.containsKey("DELETE"));
         assertEquals(true, routes.get("DELETE") instanceof DeleteRouter);
     }
+
+    @Test
+    public void itHasAMethodNotAllowedRoute() throws IOException {
+        assertEquals(true, routes.containsKey("MethodNotAllowed"));
+        assertEquals(true, routes.get("MethodNotAllowed") instanceof MethodNotAllowedRouter);
+    }
 }

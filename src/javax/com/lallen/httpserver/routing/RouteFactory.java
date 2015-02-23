@@ -28,6 +28,7 @@ public class RouteFactory {
         RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
         DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
         AuthenticationRouter authenticationRouter = new AuthenticationRouter(headBuilder);
+        MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
         routes.put("GetFileRouter", getFileRouter);
@@ -39,6 +40,7 @@ public class RouteFactory {
         routes.put("REDIRECT", redirectRouter);
         routes.put("DELETE", deleteRouter);
         routes.put("AUTHENTICATION", authenticationRouter);
+        routes.put("MethodNotAllowed", methodNotAllowedRouter);
 
         return routes;
     }
