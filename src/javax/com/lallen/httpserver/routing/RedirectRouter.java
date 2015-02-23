@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class RedirectRouter implements iResponse {
+    public static final String STATUS = "HTTP/1.1 302 Found\r\n";
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -16,7 +17,7 @@ public class RedirectRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, "302 Found");
+        return headBuilder.buildResponseHead(port, STATUS);
     }
 
     @Override

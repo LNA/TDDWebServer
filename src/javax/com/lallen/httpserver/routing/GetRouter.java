@@ -22,23 +22,44 @@ public class GetRouter implements iResponse {
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+        File[] listOfFiles = findFiles(request);
+        if (noFilesFound(listOfFiles)) {
+            return blankPage();
+        } else {
+            return bodyLinks(listOfFiles);
+        }
+    }
+
+    private File[] findFiles(Map<String, String> request) throws IOException {
         String path = request.get("PATH");
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
+        return listOfFiles;
+    }
+
+    private byte[] blankPage() throws IOException {
+        String body = "";
+        return body.getBytes();
+    }
+
+    private String fileName(File file) throws IOException {
+        return file.getName();
+    }
+
+    private boolean noFilesFound(File[] listOfFiles) throws IOException {
+        return listOfFiles == null;
+    }
+
+    private byte[] bodyLinks(File[] listOfFiles) throws IOException {
         String links;
         links = "<html><head><title></title></head><body>";
 
         for (File file : listOfFiles) {
             if (file.isFile()) {
-               links += "<a href=\"" + "/" + fileName(file) + "\">" + fileName(file) + "</a></br>";
+                links += "<a href=\"" + "/" + fileName(file) + "\">" + fileName(file) + "</a></br>";
             }
         }
         links += "</body></html>";
-
         return links.getBytes();
-    }
-
-    private String fileName(File file) throws IOException {
-        return file.getName();
     }
 }

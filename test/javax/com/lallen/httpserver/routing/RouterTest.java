@@ -17,6 +17,7 @@ public class RouterTest {
         router  = new Router(request);
         request.put("RESOURCE", "some resource");
         request.put("PATH", "some path");
+        request.put("HEADERS", "Some headers");
     }
 
     @Test
@@ -31,6 +32,22 @@ public class RouterTest {
         request.put("VERB", "JUMP");
         assertEquals("JUMP", router.sendToRoute());
     }
+
+    @Test
+    public void itSendsARequestToAuthRoute() throws IOException {
+        request.put("URI", "Some URI");
+        request.put("VERB", "JUMP");
+        request.put("HEADERS", "Some Authentication headers");
+        assertEquals("AUTHENTICATION", router.sendToRoute());
+    }
+
+    @Test
+    public void itSendsARequestToAuthRouteFromTheBrokenCobSpecRequest() throws IOException {
+        request.put("URI", "/logs");
+        assertEquals("AUTHENTICATION", router.sendToRoute());
+    }
+
+
 
     //Figure out how to mock out Java file and Java path so that I can test File Routes
 
