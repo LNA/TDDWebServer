@@ -43,4 +43,9 @@ public class RequestParser {
         String[] headerLines = requestLines.split("\r\n");
         return headerLines;
     }
+
+    public String headers() {
+        String[] headers = splitHeaders();
+        return headers[1];
+    }
 }

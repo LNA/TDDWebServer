@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class RequestBuilderTest {
     private RequestParser parser;
-    private String YAY_INPUT    = "Yay /zombies HTTP/1.1\r\n";
+    private String YAY_INPUT    = "Yay /zombies HTTP/1.1\r\n" + "foo headers";
     private RequestBuilder builder;
     private Map<String,String> request;
 
@@ -25,5 +25,6 @@ public class RequestBuilderTest {
         assertEquals("/zombies", request.get("URI"));
         assertEquals("/folder/empire", request.get("DIRECTORY"));
         assertEquals("/folder/empire/zombies", request.get("PATH"));
+        assertEquals("foo headers", request.get("HEADERS"));
     }
 }

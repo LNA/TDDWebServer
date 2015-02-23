@@ -6,10 +6,12 @@ import java.io.IOException;
 
 public class RequestParserTest {
     public RequestParser parser;
+    public RequestParser parserForHeaders;
 
     @Before
     public void setUp() throws IOException {
         parser = new RequestParser("BOOK /shouldIGetMoreGames?Yes! HTTP/1.1" + "\r\n" + "foobar");
+        parserForHeaders = new RequestParser("foo HTTP/1.1" + "\r\n" + "Authorization: Basic");
     }
 
     @Test
@@ -30,5 +32,10 @@ public class RequestParserTest {
     @Test
     public void itParsesTheURI() throws IOException {
         assertEquals("/shouldIGetMoreGames?Yes!", parser.uri());
+    }
+
+    @Test
+    public void itParsesTheHeader() throws IOException {
+        assertEquals("Authorization: Basic", parserForHeaders.headers());
     }
 }

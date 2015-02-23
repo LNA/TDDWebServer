@@ -27,6 +27,7 @@ public class RouteFactory {
         HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
         RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
         DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
+        AuthenticationRouter authenticationRouter = new AuthenticationRouter(headBuilder);
 
         routes.put("GET", getRouter);
         routes.put("GetFileRouter", getFileRouter);
@@ -37,6 +38,7 @@ public class RouteFactory {
         routes.put("HEAD", headRouter);
         routes.put("REDIRECT", redirectRouter);
         routes.put("DELETE", deleteRouter);
+        routes.put("AUTHENTICATION", authenticationRouter);
 
         return routes;
     }
