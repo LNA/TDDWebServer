@@ -10,7 +10,6 @@ import static org.junit.Assert.assertEquals;
 
 public class DeleteRouterTest {
     public static final String UTF = "UTF-8";
-    public static final String NEW_LINE = "\r\n";
     public DeleteRouter deleteRouter;
     public byte[] responseHead;
     public byte[] responseBody;
@@ -38,6 +37,6 @@ public class DeleteRouterTest {
     @Test
     public void itGivesABlankBody() throws IOException {
         body = new String(responseBody, UTF);
-        assertEquals(NEW_LINE, body);
+        assertEquals("The body has been constructed.", body);
     }
 }

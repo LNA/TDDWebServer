@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.Map;
 
 public class DeleteRouter implements iResponse{
-    public static final String NEW_LINE = "\r\n";
+    public static final String STATUS = "HTTP/1.1 200 OK\r\n";
+
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -18,12 +19,11 @@ public class DeleteRouter implements iResponse{
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, "200 OK");
+        return headBuilder.buildResponseHead(port, STATUS);
     }
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        String body = NEW_LINE;
-        return body.getBytes();
+        return bodyBuilder.buildResponseBody();
     }
 }
