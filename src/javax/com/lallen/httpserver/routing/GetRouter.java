@@ -37,7 +37,6 @@ public class GetRouter implements iResponse {
         return listOfFiles;
     }
 
-
     private byte[] blankPage() throws IOException {
         String body = "";
         return body.getBytes();

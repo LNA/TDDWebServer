@@ -12,7 +12,6 @@ public class Router {
 
     public String sendToRoute() {
         Map<Boolean, String> routes = buildRoutes();
-        System.out.println(request);
 
         if (noRouteFound(routes)) {
             return request.get("VERB");
@@ -26,7 +25,6 @@ public class Router {
         routes.put(redirect(),       "REDIRECT");
         routes.put(patchFile(),      "PatchFileRouter");
         routes.put(getFile(),        "GetFileRouter");
-        routes.put(redirect(),       "REDIRECT");
         routes.put(authentication(), "AUTHENTICATION");
         return routes;
     }
