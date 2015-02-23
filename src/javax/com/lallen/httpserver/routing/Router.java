@@ -22,10 +22,11 @@ public class Router {
 
     public Map<Boolean, String> buildRoutes() {
         Map<Boolean, String> routes = new HashMap<>();
-        routes.put(redirect(), "REDIRECT");
-        routes.put(patchFile(), "PatchFileRouter");
-        routes.put(getFile(), "GetFileRouter");
-        routes.put(redirect(), "REDIRECT");
+        routes.put(redirect(),       "REDIRECT");
+        routes.put(patchFile(),      "PatchFileRouter");
+        routes.put(getFile(),        "GetFileRouter");
+        routes.put(redirect(),       "REDIRECT");
+        routes.put(authentication(), "AUTHENTICATION");
         return routes;
     }
 
@@ -43,5 +44,10 @@ public class Router {
 
     private boolean getFile() {
         return new File(request.get("PATH")).isFile() && request.get("VERB").equals("GET");
+    }
+
+    private boolean authentication() {
+        System.out.println(request + " in router");
+        return request.get("URI").equals("/logs") || request.get("HEADERS").contains("Authentication");
     }
 }
