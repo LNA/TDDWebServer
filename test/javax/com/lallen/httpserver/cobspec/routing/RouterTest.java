@@ -55,6 +55,12 @@ public class RouterTest {
         assertEquals("PARTIAL", router.sendToRoute());
     }
 
+    @Test
+    public void itSendsARequestToParamRouter() throws IOException {
+        request.put("URI", "/parametersAreCool");
+        assertEquals("DECODE", router.sendToRoute());
+    }
+
     //Figure out how to mock out Java file and Java path so that I can test any routes that depend on checking for a File.
 
 //    @Test

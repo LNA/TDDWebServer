@@ -33,6 +33,7 @@ public class RouteFactory {
         AuthenticationRouter authenticationRouter     = new AuthenticationRouter(headBuilder);
         MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
         PartialRouter partialRouter                   = new PartialRouter(headBuilder);
+        DecodeRouter decodeRouter                     = new DecodeRouter(headBuilder);
 
         //adds routes for the core
         routes.put("GET", getRouter);
@@ -50,6 +51,7 @@ public class RouteFactory {
         routes.put("AUTHENTICATION", authenticationRouter);
         routes.put("MethodNotAllowed", methodNotAllowedRouter);
         routes.put("PARTIAL", partialRouter);
+        routes.put("DECODE", decodeRouter);
 
         return routes;
     }
