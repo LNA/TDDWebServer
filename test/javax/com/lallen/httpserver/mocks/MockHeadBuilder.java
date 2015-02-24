@@ -1,6 +1,6 @@
 package javax.com.lallen.httpserver.mocks;
 
-import javax.com.lallen.httpserver.response.iHeader;
+import javax.com.lallen.httpserver.core.response.iHeader;
 import java.io.IOException;
 
 /**

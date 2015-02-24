@@ -7,9 +7,6 @@ import javax.com.lallen.httpserver.cobspec.parsers.ArgsParser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
 
-/**
- * Created by latoyaallen on 2/9/15.
- */
 public class ArgsParserTest {
 
 

@@ -1,6 +1,6 @@
 package javax.com.lallen.httpserver.mocks;
 
-import javax.com.lallen.httpserver.sockets.iServerSocket;
+import javax.com.lallen.httpserver.core.sockets.iServerSocket;
 import java.io.*;
 import java.net.Socket;
 
