@@ -32,6 +32,7 @@ public class Router {
         routes.put(getFile(),          "GetFileRouter");
         routes.put(authentication(),   "AUTHENTICATION");
         routes.put(methodNotAllowed(), "MethodNotAllowed");
+        routes.put(paramDecode(),      "DECODE");
         return routes;
     }
 
@@ -69,5 +70,9 @@ public class Router {
 
     private boolean partial() {
         return request.get(Request.URI).equals(URI.PARTIAL_CONTENT);
+    }
+
+    private boolean paramDecode() {
+        return request.get(Request.URI).contains(URI.PARAMS);
     }
 }
