@@ -1,10 +1,12 @@
 package javax.com.lallen.httpserver.cobspec.routing;
+import javax.com.lallen.httpserver.cobspec.constants.URI;
+import javax.com.lallen.httpserver.core.constants.Request;
+import javax.com.lallen.httpserver.core.constants.Routes;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Router {
-    private static final String PATH = "PATH";
     private final Map<String,String> request;
 
     public Router(Map<String,String> request) {
@@ -16,7 +18,7 @@ public class Router {
         System.out.println("Request : " + request);
 
         if (noRouteFound(routes)) {
-            return request.get("VERB");
+            return request.get(Request.VERB);
         } else {
             return routes.get(true);
         }
@@ -38,11 +40,11 @@ public class Router {
     }
 
     private boolean redirect() {
-        return request.get("URI").equals("/redirect");
+        return request.get(Request.URI).equals(URI.REDIRECT);
     }
 
     private boolean patchFile() {
-        return new File(request.get(PATH)).isFile() && request.get("VERB").equals("PATCH");
+        return new File(request.get(Request.PATH)).isFile() && request.get(Request.VERB).equals(Routes.PATCH);
     }
 
     public boolean getFile() {
@@ -50,22 +52,22 @@ public class Router {
     }
 
     private boolean getFileRequest() {
-        return new File(request.get(PATH)).isFile() && request.get("VERB").equals("GET");
+        return new File(request.get(Request.PATH)).isFile() && request.get(Request.VERB).equals(Routes.GET);
     }
 
     private boolean authentication() {
-        return request.get("URI").equals("/logs") || request.get("HEADERS").contains("Authentication");
+        return request.get(Request.URI).equals(URI.LOGS) || request.get(Request.HEADERS).contains("Authentication");
     }
 
     private boolean methodNotAllowed() {
-        return new File(request.get(PATH)).isFile() && putOrPostRequest();
+        return new File(request.get(Request.PATH)).isFile() && putOrPostRequest();
     }
 
     private boolean putOrPostRequest() {
-        return request.get("VERB").equals("PUT") || request.get("VERB").equals("POST");
+        return request.get(Request.VERB).equals(Routes.PUT) || request.get(Request.VERB).equals(Routes.POST);
     }
 
     private boolean partial() {
-        return request.get("URI").equals("/partial_content.txt");
+        return request.get(Request.URI).equals(URI.PARTIAL_CONTENT);
     }
 }
