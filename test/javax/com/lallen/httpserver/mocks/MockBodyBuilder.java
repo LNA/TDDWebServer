@@ -1,5 +1,5 @@
 package javax.com.lallen.httpserver.mocks;
-import javax.com.lallen.httpserver.response.iBody;
+import javax.com.lallen.httpserver.core.response.iBody;
 import java.io.IOException;
 
 public class MockBodyBuilder implements iBody {

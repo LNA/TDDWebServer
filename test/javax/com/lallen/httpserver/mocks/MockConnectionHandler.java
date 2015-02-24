@@ -1,7 +1,5 @@
 package javax.com.lallen.httpserver.mocks;
 
-import javax.com.lallen.httpserver.routing.Router;
-import javax.com.lallen.httpserver.server.ServerIO;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
