@@ -6,7 +6,7 @@ import javax.com.lallen.httpserver.request.RequestBuilder;
 import javax.com.lallen.httpserver.response.BodyBuilder;
 import javax.com.lallen.httpserver.response.HeadBuilder;
 import javax.com.lallen.httpserver.routing.RouteFactory;
-import javax.com.lallen.httpserver.routing.Router;
+import javax.com.lallen.httpserver.cobspec.routing.Router;
 import javax.com.lallen.httpserver.response.iResponse;
 import java.net.Socket;
 

@@ -1,8 +1,5 @@
-package javax.com.lallen.httpserver.parsers;
+package javax.com.lallen.httpserver.cobspec.parsers;
 
-/**
- * Created by latoyaallen on 2/9/15.
- */
 public class ArgsParser {
     public static final String DEFAULT_PORT = "5000";
     public static final String DEFAULT_DIRECTORY = "../cob_spec/public";

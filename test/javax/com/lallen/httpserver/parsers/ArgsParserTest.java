@@ -2,7 +2,7 @@ package javax.com.lallen.httpserver.parsers;
 
 import org.junit.Test;
 
-import javax.com.lallen.httpserver.parsers.ArgsParser;
+import javax.com.lallen.httpserver.cobspec.parsers.ArgsParser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
