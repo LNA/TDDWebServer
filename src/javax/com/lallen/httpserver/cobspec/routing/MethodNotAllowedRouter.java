@@ -1,4 +1,5 @@
 package javax.com.lallen.httpserver.cobspec.routing;
+import javax.com.lallen.httpserver.core.constants.Status;
 import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
@@ -6,7 +7,6 @@ import java.io.IOException;
 import java.util.Map;
 
 public class MethodNotAllowedRouter implements iResponse {
-    public static final String STATUS = "HTTP/1.1 405 Method Not Allowed\r\n";
 
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
@@ -18,7 +18,7 @@ public class MethodNotAllowedRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, STATUS);
+        return headBuilder.buildResponseHead(port, Status.NOT_ALLOWED);
     }
 
     @Override

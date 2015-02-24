@@ -1,4 +1,5 @@
 package javax.com.lallen.httpserver.cobspec.routing;
+import javax.com.lallen.httpserver.core.constants.Status;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GetFileRouter implements iResponse {
-    public static final String STATUS = "HTTP/1.1 200 OK\r\n";
     private final iHeader headBuilder;
 
     public GetFileRouter(iHeader headBuilder) {
@@ -16,7 +16,7 @@ public class GetFileRouter implements iResponse {
     }
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, STATUS);
+        return headBuilder.buildResponseHead(port, Status.OK);
     }
 
     @Override

@@ -1,4 +1,5 @@
 package javax.com.lallen.httpserver.cobspec.routing;
+import javax.com.lallen.httpserver.core.constants.Status;
 import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
@@ -10,7 +11,6 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 public class RedirectRouter implements iResponse {
-    public static final String STATUS = "HTTP/1.1 302 Found\r\n";
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
@@ -21,7 +21,7 @@ public class RedirectRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, STATUS);
+        return headBuilder.buildResponseHead(port, Status.FOUND);
     }
 
     @Override

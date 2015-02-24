@@ -1,5 +1,7 @@
 package javax.com.lallen.httpserver.core.parsers;
 
+import javax.com.lallen.httpserver.core.constants.Request;
+
 public class RequestParser {
 
     private final String requestLines;
@@ -52,7 +54,7 @@ public class RequestParser {
     public String range() {
         String headers = headers();
         System.out.print("The headers are: " + headers);
-        if (headers.contains("byte")) {
+        if (headers.contains(Request.BYTE)) {
             String range = headers.split("-")[1];
             return range;
         } else {

@@ -1,5 +1,6 @@
 package javax.com.lallen.httpserver.cobspec.routing;
 
+import javax.com.lallen.httpserver.core.constants.Status;
 import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
@@ -18,7 +19,7 @@ public class PatchFileRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, "200 OK");
+        return headBuilder.buildResponseHead(port, Status.OK);
     }
 
     @Override

@@ -1,4 +1,5 @@
 package javax.com.lallen.httpserver.core.request;
+import javax.com.lallen.httpserver.core.constants.Request;
 import javax.com.lallen.httpserver.core.parsers.RequestParser;
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,14 +16,14 @@ public class RequestBuilder {
 
     public Map<String,String> buildRequest() throws IOException {
         Map<String,String> request = new HashMap<String, String>();
-        request.put("RESOURCE", resource());
-        request.put("STATUS LINE", statusLine());
-        request.put("VERB", verb());
-        request.put("URI", requestURI());
-        request.put("DIRECTORY", directory);
-        request.put("PATH", request.get("DIRECTORY") + request.get("URI"));
-        request.put("HEADERS", headers());
-        request.put("RANGE", range());
+        request.put(Request.RESOURCE, resource());
+        request.put(Request.STATUS_LINE, statusLine());
+        request.put(Request.VERB, verb());
+        request.put(Request.URI, requestURI());
+        request.put(Request.DIRECTORY, directory);
+        request.put(Request.PATH, request.get(Request.DIRECTORY) + request.get(Request.URI));
+        request.put(Request.HEADERS, headers());
+        request.put(Request.RANGE, range());
         return request;
     }
 
