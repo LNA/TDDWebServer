@@ -21,6 +21,6 @@ You can find the Cob Spec handlers at  `TDDWebServer/src/javax/com/lallen/javase
  * Currently, I use Intellij to run the tests.
 
 ## RUNNING COB SPEC 
-  1. Make sure that CobSpec is located in the same directory as your sever.  For example, if your have placed the       server in `Users/projects/ohLookHereIsMyAwesomeServer`, then cob spec should be in `User/projects/cobSpec`.
-  2. Run `java -jar fitnesse.jar -p 9090`.
-  3. Navigate to LocalHost:9090.
+  *  Make sure that CobSpec is located in the same directory as your sever.  For example, if your have placed the       server in `Users/projects/ohLookHereIsMyAwesomeServer`, then cob spec should be in `User/projects/cobSpec`.
+  *  Run `java -jar fitnesse.jar -p 9090`.
+  *  Navigate to LocalHost:9090.
