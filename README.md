@@ -5,7 +5,7 @@ This server was created to handle http requests such as get, put, post, option a
 You can find that functionality at `TDDWebServer/src/javax/com/lallen/javaserver/core`.   
 
 This server also comes packaged with the functionality to handle cobSpec requests, such as properly displaying partials based on range, decoding parameters, displaying fun gifs on screen, and more.
-You can find the cobSpec handlers at  `TDDWebServer/src/javax/com/lallen/javaserver/core`.
+You can find the cobSpec handlers at  `TDDWebServer/src/javax/com/lallen/javaserver/cobspec`.
  
 ## Requirements
   * Java "1.7.0_04"
