@@ -1,8 +1,8 @@
-package javax.com.lallen.httpserver.core.routing;
-import javax.com.lallen.httpserver.cobspec.routing.*;
+package javax.com.lallen.httpserver.cobspec.routing;
 import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
+import javax.com.lallen.httpserver.core.routing.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,18 +19,18 @@ public class RouteFactory {
     public Map<String, iResponse> buildRoutes() throws IOException {
         Map<String,iResponse> routes = new HashMap<>();
 
-        GetRouter getRouter = new GetRouter(headBuilder);
-        GetFileRouter getFileRouter = new GetFileRouter(headBuilder);
-        PatchFileRouter patchFileRouter = new PatchFileRouter(headBuilder, bodyBuilder);
-        OptionsRouter optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
-        PostRouter postRouter = new PostRouter(headBuilder, bodyBuilder);
-        PutRouter putRouter = new PutRouter(headBuilder, bodyBuilder);
-        HeadRouter headRouter = new HeadRouter(headBuilder, bodyBuilder);
-        RedirectRouter redirectRouter = new RedirectRouter(headBuilder, bodyBuilder);
-        DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
-        AuthenticationRouter authenticationRouter = new AuthenticationRouter(headBuilder);
+        GetRouter getRouter                           = new GetRouter(headBuilder);
+        GetFileRouter getFileRouter                   = new GetFileRouter(headBuilder);
+        PatchFileRouter patchFileRouter               = new PatchFileRouter(headBuilder, bodyBuilder);
+        OptionsRouter optionsRouter                   = new OptionsRouter(headBuilder, bodyBuilder);
+        PostRouter postRouter                         = new PostRouter(headBuilder, bodyBuilder);
+        PutRouter putRouter                           = new PutRouter(headBuilder, bodyBuilder);
+        HeadRouter headRouter                         = new HeadRouter(headBuilder, bodyBuilder);
+        RedirectRouter redirectRouter                 = new RedirectRouter(headBuilder, bodyBuilder);
+        DeleteRouter deleteRouter                     = new DeleteRouter(headBuilder, bodyBuilder);
+        AuthenticationRouter authenticationRouter     = new AuthenticationRouter(headBuilder);
         MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
-        PartialRouter partialRouter = new PartialRouter(headBuilder, bodyBuilder);
+        PartialRouter partialRouter                   = new PartialRouter(headBuilder);
 
         routes.put("GET", getRouter);
         routes.put("GetFileRouter", getFileRouter);

@@ -1,11 +1,13 @@
-package javax.com.lallen.httpserver.core.routing;
+package javax.com.lallen.httpserver.cobspec.routing;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.com.lallen.httpserver.cobspec.routing.MethodNotAllowedRouter;
 import javax.com.lallen.httpserver.cobspec.routing.PartialRouter;
 import javax.com.lallen.httpserver.cobspec.routing.RedirectRouter;
+import javax.com.lallen.httpserver.cobspec.routing.RouteFactory;
 import javax.com.lallen.httpserver.core.response.*;
+import javax.com.lallen.httpserver.core.routing.*;
 import java.io.IOException;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
@@ -71,6 +73,4 @@ public class RouteFactoryTest {
         assertEquals(true, routes.containsKey("PARTIAL"));
         assertEquals(true, routes.get("PARTIAL") instanceof PartialRouter);
     }
-
-
 }

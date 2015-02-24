@@ -4,19 +4,18 @@ import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Map;
 
-/**
- * Created by latoyaallen on 2/23/15.
- */
 public class PartialRouter implements iResponse {
     public static final String STATUS = "HTTP/1.1 206 Partial Content\r\n";
     private final iHeader headBuilder;
-    private final iBody bodyBuilder;
 
-    public PartialRouter(iHeader headBuilder, iBody bodyBuilder) {
+    public PartialRouter(iHeader headBuilder) {
         this.headBuilder = headBuilder;
-        this.bodyBuilder = bodyBuilder;
     }
 
     @Override
@@ -26,6 +25,11 @@ public class PartialRouter implements iResponse {
 
     @Override
     public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        return bodyBuilder.buildResponseBody();
+        String fileOneString = request.get("PATH");
+        Path fileOnePath     = Paths.get(fileOneString);
+        byte[] body          = Files.readAllBytes(fileOnePath);
+        String requestRange  = request.get("RANGE");
+        int range            = Integer.parseInt(requestRange);
+        return Arrays.copyOf(body, range);
     }
 }

@@ -4,6 +4,10 @@ import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
 import java.util.Map;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.util.Arrays;
 
 public class RedirectRouter implements iResponse {
     public static final String STATUS = "HTTP/1.1 302 Found\r\n";

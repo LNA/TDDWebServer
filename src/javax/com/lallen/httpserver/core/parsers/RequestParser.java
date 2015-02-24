@@ -48,4 +48,16 @@ public class RequestParser {
         String[] headers = splitHeaders();
         return headers[1];
     }
+
+    public String range() {
+        String headers = headers();
+        System.out.print("The headers are: " + headers);
+        if (headers.contains("byte")) {
+            String range = headers.split("-")[1];
+            return range;
+        } else {
+            String range = " ";
+            return range;
+        }
+    }
 }

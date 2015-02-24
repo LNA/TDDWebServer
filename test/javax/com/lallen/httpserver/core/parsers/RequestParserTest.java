@@ -7,11 +7,13 @@ import java.io.IOException;
 public class RequestParserTest {
     public RequestParser parser;
     public RequestParser parserForHeaders;
+    public RequestParser parserForPartial;
 
     @Before
     public void setUp() throws IOException {
         parser = new RequestParser("BOOK /shouldIGetMoreGames?Yes! HTTP/1.1" + "\r\n" + "foobar");
         parserForHeaders = new RequestParser("foo HTTP/1.1" + "\r\n" + "Authorization: Basic");
+        parserForPartial = new RequestParser("foo HTTP/1.1" + "\r\n" + "Range: bytes=0-8675309\r\n");
     }
 
     @Test
@@ -37,5 +39,10 @@ public class RequestParserTest {
     @Test
     public void itParsesTheHeader() throws IOException {
         assertEquals("Authorization: Basic", parserForHeaders.headers());
+    }
+
+    @Test
+    public void itParsesTheRangeFromAPartialHeader() throws IOException {
+        assertEquals("8675309", parserForPartial.range());
     }
 }

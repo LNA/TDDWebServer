@@ -24,6 +24,7 @@ public class Router {
 
     private Map<Boolean, String> buildRoutes() {
         Map<Boolean, String> routes = new HashMap<>();
+        routes.put(partial(),          "PARTIAL");
         routes.put(redirect(),         "REDIRECT");
         routes.put(patchFile(),        "PatchFileRouter");
         routes.put(getFile(),          "GetFileRouter");
@@ -44,7 +45,11 @@ public class Router {
         return new File(request.get(PATH)).isFile() && request.get("VERB").equals("PATCH");
     }
 
-    private boolean getFile() {
+    public boolean getFile() {
+        return getFileRequest() && !partial();
+    }
+
+    private boolean getFileRequest() {
         return new File(request.get(PATH)).isFile() && request.get("VERB").equals("GET");
     }
 
@@ -58,5 +63,9 @@ public class Router {
 
     private boolean putOrPostRequest() {
         return request.get("VERB").equals("PUT") || request.get("VERB").equals("POST");
+    }
+
+    private boolean partial() {
+        return request.get("URI").equals("/partial_content.txt");
     }
 }
