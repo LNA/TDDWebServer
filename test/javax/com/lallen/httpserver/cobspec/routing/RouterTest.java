@@ -1,4 +1,4 @@
-package javax.com.lallen.httpserver.routing;
+package javax.com.lallen.httpserver.cobspec.routing;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package javax.com.lallen.httpserver.parsers;
+package javax.com.lallen.httpserver.cobspec.parsers;
 
 import org.junit.Test;
 
