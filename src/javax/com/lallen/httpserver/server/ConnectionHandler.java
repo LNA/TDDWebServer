@@ -36,7 +36,9 @@ public class ConnectionHandler {
         Router router = new Router(request);
         String requestedRoute = router.sendToRoute();
         System.out.println("The requestedRoute is: " + requestedRoute);
+        System.out.println("+++++++++++++++++++++");
         iResponse response = routes.get(requestedRoute);
+        System.out.println(":response: " + response );
         byte[] head = response.buildResponseHead(openSocket.getLocalPort());
         byte[] body = response.buildResponseBody(request);
         io.writeResponse(head, body);

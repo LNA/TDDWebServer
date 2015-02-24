@@ -62,4 +62,12 @@ public class RouteFactoryTest {
         assertEquals(true, routes.containsKey("MethodNotAllowed"));
         assertEquals(true, routes.get("MethodNotAllowed") instanceof MethodNotAllowedRouter);
     }
+
+    @Test
+    public void itHasAPartialRoute() throws IOException {
+        assertEquals(true, routes.containsKey("PARTIAL"));
+        assertEquals(true, routes.get("PARTIAL") instanceof PartialRouter);
+    }
+
+
 }

@@ -29,6 +29,7 @@ public class RouteFactory {
         DeleteRouter deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
         AuthenticationRouter authenticationRouter = new AuthenticationRouter(headBuilder);
         MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
+        PartialRouter partialRouter = new PartialRouter(headBuilder, bodyBuilder);
 
         routes.put("GET", getRouter);
         routes.put("GetFileRouter", getFileRouter);
@@ -41,6 +42,7 @@ public class RouteFactory {
         routes.put("DELETE", deleteRouter);
         routes.put("AUTHENTICATION", authenticationRouter);
         routes.put("MethodNotAllowed", methodNotAllowedRouter);
+        routes.put("PARTIAL", partialRouter);
 
         return routes;
     }

@@ -2,9 +2,6 @@ package javax.com.lallen.httpserver.server;
 import java.io.*;
 import java.io.DataOutputStream;
 
-/**
- * Created by latoyaallen on 2/13/15.
- */
 public class ServerIO {
     private final InputStream in;
     private final OutputStream out;

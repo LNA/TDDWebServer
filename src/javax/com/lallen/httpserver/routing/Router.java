@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Router {
+    private static final String PATH = "PATH";
     private final Map<String,String> request;
 
     public Router(Map<String,String> request) {
@@ -40,11 +41,11 @@ public class Router {
     }
 
     private boolean patchFile() {
-        return new File(request.get("PATH")).isFile() && request.get("VERB").equals("PATCH");
+        return new File(request.get(PATH)).isFile() && request.get("VERB").equals("PATCH");
     }
 
     private boolean getFile() {
-        return new File(request.get("PATH")).isFile() && request.get("VERB").equals("GET");
+        return new File(request.get(PATH)).isFile() && request.get("VERB").equals("GET");
     }
 
     private boolean authentication() {
@@ -52,7 +53,7 @@ public class Router {
     }
 
     private boolean methodNotAllowed() {
-        return new File(request.get("PATH")).isFile() && putOrPostRequest();
+        return new File(request.get(PATH)).isFile() && putOrPostRequest();
     }
 
     private boolean putOrPostRequest() {
