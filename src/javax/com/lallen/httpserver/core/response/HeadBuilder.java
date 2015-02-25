@@ -9,7 +9,6 @@ public class HeadBuilder implements iHeader {
         StringBuilder stringBuilder = new StringBuilder();
         appendLines(stringBuilder, port, status);
         String lines = stringBuilder.toString();
-        System.out.println("head lines" + lines);
         return lines.getBytes();
     }
 

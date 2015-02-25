@@ -58,8 +58,17 @@ public class RequestParser {
             String range = headers.split("-")[1];
             return range;
         } else {
-            String range = " ";
-            return range;
+            return " ";
+        }
+    }
+
+    public String etag() {
+        String headers = headers();
+        if (headers.contains("If-Match")) {
+            String etag = headers.split(": ")[1];
+            return etag;
+        } else {
+            return " ";
         }
     }
 }

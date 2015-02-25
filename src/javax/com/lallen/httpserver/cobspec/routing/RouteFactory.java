@@ -11,7 +11,7 @@ public class RouteFactory {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public RouteFactory(iHeader headBuilder, iBody bodyBuilder) { //two differenct factories???
+    public RouteFactory(iHeader headBuilder, iBody bodyBuilder) { //two different factories???
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }
@@ -34,6 +34,7 @@ public class RouteFactory {
         MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
         PartialRouter partialRouter                   = new PartialRouter(headBuilder);
         DecodeRouter decodeRouter                     = new DecodeRouter(headBuilder);
+        GetPatchFileRouter getPatchFileRouter         = new GetPatchFileRouter(headBuilder, bodyBuilder);
 
         //adds routes for the core
         routes.put("GET", getRouter);
@@ -52,6 +53,7 @@ public class RouteFactory {
         routes.put("MethodNotAllowed", methodNotAllowedRouter);
         routes.put("PARTIAL", partialRouter);
         routes.put("DECODE", decodeRouter);
+        routes.put("GetPatchFileRouter", getPatchFileRouter);
 
         return routes;
     }

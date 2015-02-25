@@ -24,6 +24,7 @@ public class RequestBuilder {
         request.put(Request.PATH, request.get(Request.DIRECTORY) + request.get(Request.URI));
         request.put(Request.HEADERS, headers());
         request.put(Request.RANGE, range());
+        request.put(Request.ETAG, etag());
         return request;
     }
 
@@ -49,5 +50,9 @@ public class RequestBuilder {
 
     private String range() throws IOException {
         return parser.range();
+    }
+
+    private String etag() throws IOException {
+        return parser.etag();
     }
 }
