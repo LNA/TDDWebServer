@@ -19,7 +19,7 @@ public class PatchFileRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+        return headBuilder.buildResponseHead(port, Status.NO_CONTENT);
     }
 
     @Override

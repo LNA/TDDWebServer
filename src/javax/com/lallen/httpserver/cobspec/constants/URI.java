@@ -5,6 +5,4 @@ public class URI {
     public static final String PARAMS          = "/parameters";
     public static final String REDIRECT        = "/redirect";
     public static final String LOGS            = "/logs";
-
-
 }
