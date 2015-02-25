@@ -5,12 +5,12 @@ import javax.com.lallen.httpserver.core.response.iResponse;
 import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
 
-public class GetPatchRouterTest {
+
+public class GetPatchFileRouterTest {
     public static final String UTF = "UTF-8";
-    public iResponse getPatchRouter;
+    public iResponse getPatchFileRouter;
     public byte[] responseHead;
     public String head;
     public MockHeadBuilder headBuilder;
@@ -20,8 +20,8 @@ public class GetPatchRouterTest {
     public void setUp() throws IOException {
         headBuilder    = new MockHeadBuilder();
         bodyBuilder    = new MockBodyBuilder();
-        getPatchRouter = new GetPatchRouter(headBuilder, bodyBuilder);
-        responseHead   = getPatchRouter.buildResponseHead(227);
+        getPatchFileRouter = new GetPatchFileRouter(headBuilder, bodyBuilder);
+        responseHead   = getPatchFileRouter.buildResponseHead(227);
     }
 
     @Test

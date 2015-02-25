@@ -22,8 +22,8 @@ public class ConnectionHandler {
     }
 
     public void run() throws IOException {
+        System.out.println("+++++++++++++++++++++");
         String requestLines = io.readRequest();
-        System.out.println("The request lines are: " + "" + requestLines);
         RequestParser parser = new RequestParser(requestLines);
         RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
 
@@ -36,12 +36,13 @@ public class ConnectionHandler {
         Router router = new Router(request);
         String requestedRoute = router.sendToRoute();
         System.out.println("The requestedRoute is: " + requestedRoute);
-        System.out.println("+++++++++++++++++++++");
         iResponse response = routes.get(requestedRoute);
         System.out.println(":response: " + response );
         byte[] head = response.buildResponseHead(openSocket.getLocalPort());
         byte[] body = response.buildResponseBody(request);
         io.writeResponse(head, body);
+        System.out.println("+++++++++++++++++++++");
+
         openSocket.close();
     }
 }

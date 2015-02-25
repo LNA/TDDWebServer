@@ -34,7 +34,7 @@ public class RouteFactory {
         MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
         PartialRouter partialRouter                   = new PartialRouter(headBuilder);
         DecodeRouter decodeRouter                     = new DecodeRouter(headBuilder);
-        GetPatchRouter getPatchRouter                 = new GetPatchRouter(headBuilder, bodyBuilder);
+        GetPatchFileRouter getPatchFileRouter         = new GetPatchFileRouter(headBuilder, bodyBuilder);
 
         //adds routes for the core
         routes.put("GET", getRouter);
@@ -53,7 +53,7 @@ public class RouteFactory {
         routes.put("MethodNotAllowed", methodNotAllowedRouter);
         routes.put("PARTIAL", partialRouter);
         routes.put("DECODE", decodeRouter);
-        routes.put("GetPatch", getPatchRouter);
+        routes.put("GetPatchFileRouter", getPatchFileRouter);
 
         return routes;
     }

@@ -18,8 +18,10 @@ public class RouterTest {
         request = new HashMap<>();
         router  = new Router(request);
         request.put("RESOURCE", "some resource");
-        request.put("PATH", "some path");
-        request.put("HEADERS", "Some headers");
+        request.put("PATH",     "some path");
+        request.put("HEADERS",  "some headers");
+        request.put("ETAG",     "some etag");
+        request.put("URI",      "some uri");
     }
 
     @Test
@@ -30,15 +32,12 @@ public class RouterTest {
 
     @Test
     public void itSendsARequestToAVerbRoute() throws IOException {
-        request.put("URI", "Some URI");
-        request.put("VERB", "JUMP");
-        assertEquals("JUMP", router.sendToRoute());
+        request.put("VERB", "GET");
+        assertEquals("GET", router.sendToRoute());
     }
 
     @Test
     public void itSendsARequestToAuthRoute() throws IOException {
-        request.put("URI", "Some URI");
-        request.put("VERB", "JUMP");
         request.put("HEADERS", "Some Authentication headers");
         assertEquals("AUTHENTICATION", router.sendToRoute());
     }
@@ -64,8 +63,9 @@ public class RouterTest {
     @Test
     public void itSendsARequestToGetPatchRouter() throws IOException {
         request.put("URI", "/parametersAreCool");
-        request.put("ETAG", "dnisa987");
-        assertEquals("GetPatchRouter", router.sendToRoute());
+        request.put("VERB", "GET");
+        request.put("HEADERS", "If-Match: dnisa987");
+        assertEquals("GetPatchFileRouter", router.sendToRoute());
     }
 
     //Figure out how to mock out Java file and Java path so that I can test any routes that depend on checking for a File.
