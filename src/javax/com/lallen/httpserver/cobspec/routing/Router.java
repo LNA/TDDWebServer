@@ -48,7 +48,7 @@ public class Router {
     }
 
     private boolean patchFile() {
-        return new File(request.get(Request.PATH)).isFile() && request.get(Request.URI).equals("/patch-content.txt") && request.get(Request.VERB).equals("GET");
+        return new File(request.get(Request.PATH)).isFile() && request.get(Request.URI).equals("/patch-content.txt") && request.get(Request.VERB).equals("PATCH");
     }
 
     public boolean getFile() {
@@ -85,6 +85,6 @@ public class Router {
     }
 
     private boolean getPatchFile() {
-        return new File(request.get(Request.PATH)).equals("/patch-content.txt") && request.get(Request.VERB).equals(Routes.GET);
+        return request.get("URI").equals("/patch-content.txt") && request.get("VERB").equals("GET");
     }
 }
