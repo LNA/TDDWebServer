@@ -43,7 +43,7 @@ public class GetPatchFileRouter implements iResponse {
     }
 
     private byte[] defaultContent(Map<String, String> request) throws IOException {
-        String requestPath = request.get("PATH");
+        String requestPath   = request.get("PATH");
         Path fileOnePath     = Paths.get(requestPath);
         byte[] body          = Files.readAllBytes(fileOnePath);
         return body;

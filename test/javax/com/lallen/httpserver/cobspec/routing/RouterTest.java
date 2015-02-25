@@ -62,7 +62,7 @@ public class RouterTest {
 
     @Test
     public void itSendsARequestToGetPatchRouter() throws IOException {
-        request.put("URI", "/parametersAreCool");
+        request.put("URI", "/patch-content.txt");
         request.put("VERB", "GET");
         request.put("HEADERS", "If-Match: dnisa987");
         assertEquals("GetPatchFileRouter", router.sendToRoute());
