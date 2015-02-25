@@ -20,10 +20,9 @@ public class GetFileRouterTest {
 
     @Before
     public void setUp() throws IOException {
-        headBuilder = new MockHeadBuilder();
-        fileRouter = new GetFileRouter(headBuilder);
+        headBuilder  = new MockHeadBuilder();
+        fileRouter   = new GetFileRouter(headBuilder);
         responseHead = fileRouter.buildResponseHead(227);
-        Map<String,String> request = new HashMap<>();
     }
 
     @Test
