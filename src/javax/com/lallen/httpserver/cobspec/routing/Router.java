@@ -1,4 +1,5 @@
 package javax.com.lallen.httpserver.cobspec.routing;
+import javax.com.lallen.httpserver.cobspec.constants.ETAG;
 import javax.com.lallen.httpserver.cobspec.constants.URI;
 import javax.com.lallen.httpserver.core.constants.Request;
 import javax.com.lallen.httpserver.core.constants.Routes;
@@ -33,6 +34,7 @@ public class Router {
         routes.put(authentication(),   "AUTHENTICATION");
         routes.put(methodNotAllowed(), "MethodNotAllowed");
         routes.put(paramDecode(),      "DECODE");
+        routes.put(getPatch(),         "GetPatchRouter");
         return routes;
     }
 
@@ -74,5 +76,13 @@ public class Router {
 
     private boolean paramDecode() {
         return request.get(Request.URI).contains(URI.PARAMS);
+    }
+
+    private boolean getPatch() {
+        return hasEtag();
+    }
+
+    private boolean hasEtag() {
+        return !request.get(Request.ETAG).equals(Request.NO_ETAG);
     }
 }

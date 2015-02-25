@@ -11,7 +11,7 @@ public class RouteFactory {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
 
-    public RouteFactory(iHeader headBuilder, iBody bodyBuilder) { //two differenct factories???
+    public RouteFactory(iHeader headBuilder, iBody bodyBuilder) { //two different factories???
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
     }

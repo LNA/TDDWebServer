@@ -61,6 +61,13 @@ public class RouterTest {
         assertEquals("DECODE", router.sendToRoute());
     }
 
+    @Test
+    public void itSendsARequestToGetPatchRouter() throws IOException {
+        request.put("URI", "/parametersAreCool");
+        request.put("ETAG", "dnisa987");
+        assertEquals("GetPatchRouter", router.sendToRoute());
+    }
+
     //Figure out how to mock out Java file and Java path so that I can test any routes that depend on checking for a File.
 
 //    @Test
