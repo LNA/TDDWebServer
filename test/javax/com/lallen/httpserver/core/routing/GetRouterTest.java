@@ -30,7 +30,7 @@ public class GetRouterTest {
         request.put("PATH", "/wat");
         getRouter = new GetRouter(headBuilder, request);
         getRouter.buildResponseHead(999);
-        assertEquals(headBuilder.getSTATUS(), "404");
+        assertEquals(headBuilder.getSTATUS(), "HTTP/1.1 404 NOT FOUND\r\n");
     }
 
 //    @Test
