@@ -25,6 +25,7 @@ public class ConnectionHandler {
         Map<String, String> request = generateRequest();
         iResponse response          = generateResponse(request);
         write(response);
+        System.out.print("I sent a response. In return, I'd like chocolate.  Preferably dark chocolate.\r\n");
         openSocket.close();
     }
 
