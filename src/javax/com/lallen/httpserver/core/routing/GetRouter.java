@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.io.File;
 
-
 public class GetRouter implements iResponse {
     private final iHeader headBuilder;
     private final Map<String,String> request;
@@ -19,7 +18,13 @@ public class GetRouter implements iResponse {
 
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+        File[] listOfFiles = findFiles();
+        if (noFilesFound(findFiles())) {
+            return headBuilder.buildResponseHead(port, Status.NOT_FOUND);
+        } else {
+            return headBuilder.buildResponseHead(port, Status.OK);
+        }
+
     }
 
     @Override
