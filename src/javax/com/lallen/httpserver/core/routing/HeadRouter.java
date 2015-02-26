@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class HeadRouter implements iResponse {
     private final iHeader headBuilder;
-    private final iBody bodyBuilder;
+    private final iBody   bodyBuilder;
 
     public HeadRouter(iHeader headBuilder, iBody bodyBuilder) {
         this.headBuilder = headBuilder;
@@ -16,12 +16,12 @@ public class HeadRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return headBuilder.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
-        return bodyBuilder.buildResponseBody();
+    public byte[] renderBody() throws IOException {
+        return bodyBuilder.renderBody();
     }
 }

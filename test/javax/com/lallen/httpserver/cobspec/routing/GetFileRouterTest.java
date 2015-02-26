@@ -3,7 +3,7 @@ package javax.com.lallen.httpserver.cobspec.routing;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
+import javax.com.lallen.httpserver.mocks.MockResponseHead;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,14 +16,14 @@ public class GetFileRouterTest {
     public iResponse fileRouter;
     public byte[] responseHead;
     public String head;
-    public MockHeadBuilder headBuilder;
+    public MockResponseHead headBuilder;
 
     @Before
     public void setUp() throws IOException {
-        headBuilder  = new MockHeadBuilder();
+        headBuilder  = new MockResponseHead();
         Map<String,String> request = new HashMap<>();
         fileRouter   = new GetFileRouter(headBuilder, request);
-        responseHead = fileRouter.buildResponseHead(227);
+        responseHead = fileRouter.renderHead(227);
     }
 
     @Test

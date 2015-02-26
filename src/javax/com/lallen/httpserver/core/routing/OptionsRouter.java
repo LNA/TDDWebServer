@@ -16,12 +16,12 @@ public class OptionsRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return headBuilder.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
-        return bodyBuilder.buildResponseBody();
+    public byte[] renderBody() throws IOException {
+        return bodyBuilder.renderBody();
     }
 }

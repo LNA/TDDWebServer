@@ -3,6 +3,6 @@ import java.io.IOException;
 import java.util.Map;
 
 public interface iResponse {
-    public byte[] buildResponseHead(int port) throws IOException;
-    public byte[] buildResponseBody() throws IOException;
+    public byte[] renderHead(int port) throws IOException;
+    public byte[] renderBody() throws IOException;
 }

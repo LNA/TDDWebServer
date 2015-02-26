@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.util.Map;
 import javax.com.lallen.httpserver.core.parsers.RequestParser;
 import javax.com.lallen.httpserver.core.request.RequestBuilder;
-import javax.com.lallen.httpserver.core.response.BodyBuilder;
-import javax.com.lallen.httpserver.core.response.HeadBuilder;
+import javax.com.lallen.httpserver.core.response.ResponseBody;
+import javax.com.lallen.httpserver.core.response.ResponseHead;
 import javax.com.lallen.httpserver.cobspec.routing.RouteFactory;
 import javax.com.lallen.httpserver.cobspec.routing.Router;
 import javax.com.lallen.httpserver.core.response.iResponse;
@@ -22,30 +22,35 @@ public class ConnectionHandler {
     }
 
     public void run() throws IOException {
-        System.out.println("+++++++++++++++++++++");
-        String requestLines = io.readRequest();
-        System.out.println("The request lines are: " + "\r\n" + requestLines);
-        RequestParser parser = new RequestParser(requestLines);
-        RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
-
-        Map<String, String> request = requestBuilder.buildRequest();
-        HeadBuilder headBuilder   = new HeadBuilder();
-        BodyBuilder bodyBuilder   = new BodyBuilder();
-
-        RouteFactory routeFactory = new RouteFactory(headBuilder, bodyBuilder, request);
-        Map<String, iResponse> routes = routeFactory.buildRoutes();
-        Router router = new Router(request);
-        String requestedRoute = router.sendToRoute();
-        System.out.println("The requestedRoute is: " + requestedRoute);
-        iResponse response = routes.get(requestedRoute);
-
-
-
-        byte[] head = response.buildResponseHead(openSocket.getLocalPort());
-        byte[] body = response.buildResponseBody();
-        io.writeResponse(head, body);
-        System.out.println("+++++++++++++++++++++");
-
+        Map<String, String> request = generateRequest();
+        iResponse response          = generateResponse(request);
+        write(response);
+        System.out.print("I sent a response. In return, I'd like chocolate.  Preferably dark chocolate.\r\n");
         openSocket.close();
+    }
+
+    public Map<String, String> generateRequest() throws IOException {
+        String requestLines           = io.readRequest();
+        RequestParser parser          = new RequestParser(requestLines);
+        RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
+        Map<String, String> request   = requestBuilder.buildRequest();
+        return request;
+    }
+
+    public iResponse generateResponse(Map<String, String> request) throws IOException {
+        ResponseHead responseHead     = new ResponseHead();
+        ResponseBody bodyBuilder      = new ResponseBody();
+        RouteFactory routeFactory     = new RouteFactory(responseHead, bodyBuilder, request);
+        Map<String, iResponse> routes = routeFactory.buildRoutes();
+        Router router                 = new Router(request);
+        String requestedRoute         = router.sendToRoute();
+        iResponse response            = routes.get(requestedRoute);
+        return response;
+    }
+
+    public void write(iResponse response) throws IOException {
+        byte[] head = response.renderHead(openSocket.getLocalPort());
+        byte[] body = response.renderBody();
+        io.writeResponse(head, body);
     }
 }

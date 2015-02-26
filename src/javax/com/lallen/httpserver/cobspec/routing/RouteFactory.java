@@ -8,37 +8,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RouteFactory {
-    private final iHeader headBuilder;
-    private final iBody bodyBuilder;
+    private final iHeader ResponseHead;
+    private final iBody   ResponseBody;
     private final Map<String,String> request;
 
-    public RouteFactory(iHeader headBuilder, iBody bodyBuilder, Map<String, String> request) { //two different factories???
-        this.headBuilder = headBuilder;
-        this.bodyBuilder = bodyBuilder;
-        this.request = request;
+    public RouteFactory(iHeader ResponseHead, iBody ResponseBody, Map<String, String> request) { //two different factories???
+        this.ResponseHead = ResponseHead;
+        this.ResponseBody = ResponseBody;
+        this.request      = request;
     }
 
     public Map<String, iResponse> buildRoutes() throws IOException {
         Map<String,iResponse> routes = new HashMap<>();
         // routes for the core
-        GetRouter getRouter                           = new GetRouter(headBuilder, request);
-        OptionsRouter optionsRouter                   = new OptionsRouter(headBuilder, bodyBuilder);
-        PostRouter postRouter                         = new PostRouter(headBuilder, bodyBuilder);
-        PutRouter putRouter                           = new PutRouter(headBuilder, bodyBuilder);
-        DeleteRouter deleteRouter                     = new DeleteRouter(headBuilder, bodyBuilder);
-        HeadRouter headRouter                         = new HeadRouter(headBuilder, bodyBuilder);
+        GetRouter getRouter                           = new GetRouter(ResponseHead, request);
+        OptionsRouter optionsRouter                   = new OptionsRouter(ResponseHead, ResponseBody);
+        PostRouter postRouter                         = new PostRouter(ResponseHead, ResponseBody);
+        PutRouter putRouter                           = new PutRouter(ResponseHead, ResponseBody);
+        DeleteRouter deleteRouter                     = new DeleteRouter(ResponseHead, ResponseBody);
+        HeadRouter headRouter                         = new HeadRouter(ResponseHead, ResponseBody);
 
         // routes for cobspec
-        GetFileRouter getFileRouter                   = new GetFileRouter(headBuilder, request);
-        PatchFileRouter patchFileRouter               = new PatchFileRouter(headBuilder, bodyBuilder);
-        RedirectRouter redirectRouter                 = new RedirectRouter(headBuilder, bodyBuilder);
-        AuthenticationRouter authenticationRouter     = new AuthenticationRouter(headBuilder);
-        MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
-        PartialRouter partialRouter                   = new PartialRouter(headBuilder, request);
-        DecodeRouter decodeRouter                     = new DecodeRouter(headBuilder, request);
-        GetPatchFileRouter getPatchFileRouter         = new GetPatchFileRouter(headBuilder, bodyBuilder, request);
-        GetLogRouter getLogRouter                     = new GetLogRouter(headBuilder, bodyBuilder);
-        GetLogsRouter getLogsRouter                   = new GetLogsRouter(headBuilder);
+        GetFileRouter getFileRouter                   = new GetFileRouter(ResponseHead, request);
+        PatchFileRouter patchFileRouter               = new PatchFileRouter(ResponseHead, ResponseBody);
+        RedirectRouter redirectRouter                 = new RedirectRouter(ResponseHead, ResponseBody);
+        AuthenticationRouter authenticationRouter     = new AuthenticationRouter(ResponseHead);
+        MethodNotAllowedRouter methodNotAllowedRouter = new MethodNotAllowedRouter(ResponseHead, ResponseBody);
+        PartialRouter partialRouter                   = new PartialRouter(ResponseHead, request);
+        DecodeRouter decodeRouter                     = new DecodeRouter(ResponseHead, request);
+        GetPatchFileRouter getPatchFileRouter         = new GetPatchFileRouter(ResponseHead, request);
+        GetLogRouter getLogRouter                     = new GetLogRouter(ResponseHead, ResponseBody);
+        GetLogsRouter getLogsRouter                   = new GetLogsRouter(ResponseHead);
 
 
         //adds routes for the core

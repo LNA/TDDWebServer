@@ -1,6 +1,5 @@
 package javax.com.lallen.httpserver.cobspec.routing;
 
-import javax.com.lallen.httpserver.cobspec.constants.ETAG;
 import javax.com.lallen.httpserver.core.constants.Status;
 import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
@@ -12,23 +11,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GetPatchFileRouter implements iResponse {
-    private final iHeader headBuilder;
-    private final iBody bodyBuilder;
+    private final iHeader responseHead;
     private final Map<String,String> request;
 
-    public GetPatchFileRouter(iHeader headBuilder, iBody bodyBuilder, Map<String, String> request) {
-        this.headBuilder = headBuilder;
-        this.bodyBuilder = bodyBuilder;
+    public GetPatchFileRouter(iHeader responseHead, Map<String, String> request) {
+        this.responseHead = responseHead;
         this.request = request;
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] renderBody() throws IOException {
         if (!request.get("ETAG").equals(" ")) {
             System.out.println(" Etag is blank line");
             return patchContent();

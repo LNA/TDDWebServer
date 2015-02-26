@@ -9,19 +9,19 @@ public class GetLogsRouter implements iResponse {
     public static final String PUT_THESE               = "PUT /these HTTP/1.1";
     public static final String HEAD_REQUESTS           = "HEAD /requests HTTP/1.1";
     public static final String AUTHENTICATION_REQUIRED = "Authentication required";
-    private final iHeader headBuilder;
+    private final iHeader responseHead;
 
-    public GetLogsRouter(iHeader headBuilder) {
-        this.headBuilder = headBuilder;
+    public GetLogsRouter(iHeader responseHead) {
+        this.responseHead = responseHead;
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] renderBody() throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         appendLines(stringBuilder);
         String lines = stringBuilder.toString();

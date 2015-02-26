@@ -2,7 +2,7 @@ package javax.com.lallen.httpserver.core.routing;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
+import javax.com.lallen.httpserver.mocks.MockResponseHead;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,11 +16,11 @@ public class GetRouterTest {
     public byte[] responseBody;
     public String head;
     public String body;
-    public MockHeadBuilder headBuilder;
+    public MockResponseHead headBuilder;
 
     @Before
     public void setUp() throws IOException {
-        headBuilder = new MockHeadBuilder();
+        headBuilder = new MockResponseHead();
 
     }
 
@@ -29,7 +29,7 @@ public class GetRouterTest {
         Map<String,String> request = new HashMap<>();
         request.put("PATH", "/wat");
         getRouter = new GetRouter(headBuilder, request);
-        getRouter.buildResponseHead(999);
+        getRouter.renderHead(999);
         assertEquals(headBuilder.getSTATUS(), "HTTP/1.1 404 NOT FOUND\r\n");
     }
 

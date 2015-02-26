@@ -4,28 +4,23 @@ import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
-import java.util.Map;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
-import java.util.Arrays;
 
 public class RedirectRouter implements iResponse {
-    private final iHeader headBuilder;
-    private final iBody bodyBuilder;
+    private final iHeader responseHead;
+    private final iBody responseBody;
 
-    public RedirectRouter(iHeader headBuilder, iBody bodyBuilder) {
-        this.headBuilder = headBuilder;
-        this.bodyBuilder = bodyBuilder;
+    public RedirectRouter(iHeader responseHead, iBody responseBody) {
+        this.responseHead = responseHead;
+        this.responseBody = responseBody;
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.FOUND);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.FOUND);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
-        return bodyBuilder.buildResponseBody();
+    public byte[] renderBody() throws IOException {
+        return responseBody.renderBody();
     }
 }

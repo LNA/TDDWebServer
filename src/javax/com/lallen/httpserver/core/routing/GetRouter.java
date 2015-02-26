@@ -8,27 +8,27 @@ import java.util.Map;
 import java.io.File;
 
 public class GetRouter implements iResponse {
-    private final iHeader headBuilder;
+    private final iHeader responseHead;
     private final Map<String,String> request;
 
-    public GetRouter(iHeader headBuilder, Map<String, String> request) {
-        this.headBuilder = headBuilder;
+    public GetRouter(iHeader responseHead, Map<String, String> request) {
+        this.responseHead = responseHead;
         this.request = request;
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
+    public byte[] renderHead(int port) throws IOException {
         File[] listOfFiles = findFiles();
         if (noFilesFound(findFiles())) {
-            return headBuilder.buildResponseHead(port, Status.NOT_FOUND);
+            return responseHead.renderHead(port, Status.NOT_FOUND);
         } else {
-            return headBuilder.buildResponseHead(port, Status.OK);
+            return responseHead.renderHead(port, Status.OK);
         }
 
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] renderBody() throws IOException {
         File[] listOfFiles = findFiles();
         if (noFilesFound(findFiles())) {
             return blankPage();

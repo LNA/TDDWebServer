@@ -53,7 +53,6 @@ public class RequestParser {
 
     public String range() {
         String headers = headers();
-        System.out.print("The headers are: " + headers);
         if (headers.contains(Request.BYTE)) {
             String range = headers.split("-")[1];
             return range;

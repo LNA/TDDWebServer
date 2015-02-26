@@ -3,9 +3,8 @@ package javax.com.lallen.httpserver.cobspec.routing;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.com.lallen.httpserver.cobspec.routing.PatchFileRouter;
-import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
-import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
+import javax.com.lallen.httpserver.mocks.MockResponseBody;
+import javax.com.lallen.httpserver.mocks.MockResponseHead;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,17 +18,17 @@ public class PatchFileRouterTest {
     public byte[] responseBody;
     public String head;
     public String body;
-    public MockHeadBuilder headBuilder;
-    public MockBodyBuilder bodyBuilder;
+    public MockResponseHead headBuilder;
+    public MockResponseBody bodyBuilder;
 
     @Before
     public void setUp() throws IOException {
-        headBuilder = new MockHeadBuilder();
-        bodyBuilder = new MockBodyBuilder();
+        headBuilder = new MockResponseHead();
+        bodyBuilder = new MockResponseBody();
         patchRouter = new PatchFileRouter(headBuilder, bodyBuilder);
-        responseHead = patchRouter.buildResponseHead(1999);
+        responseHead = patchRouter.renderHead(1999);
         Map<String,String> request = new HashMap<>();
-        responseBody = patchRouter.buildResponseBody();
+        responseBody = patchRouter.renderBody();
     }
 
     @Test
