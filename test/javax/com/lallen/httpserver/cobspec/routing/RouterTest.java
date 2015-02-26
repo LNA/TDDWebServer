@@ -42,11 +42,11 @@ public class RouterTest {
         assertEquals("AUTHENTICATION", router.sendToRoute());
     }
 
-    @Test
-    public void itSendsARequestToAuthRouteFromTheBrokenCobSpecRequest() throws IOException {
-        request.put("URI", "/logs");
-        assertEquals("AUTHENTICATION", router.sendToRoute());
-    }
+//    @Test
+//    public void itSendsARequestToAuthRouteFromTheBrokenCobSpecRequest() throws IOException {
+//        request.put("URI", "/logs");
+//        assertEquals("AUTHENTICATION", router.sendToRoute());
+//    }
 
     @Test
     public void itSendsARequestToPartialRouter() throws IOException {
@@ -66,6 +66,20 @@ public class RouterTest {
         request.put("VERB", "GET");
         request.put("HEADERS", "If-Match: dnisa987");
         assertEquals("GetPatchFileRouter", router.sendToRoute());
+    }
+
+    @Test
+    public void itSendsARequestToTheGetLogRouter() throws IOException {
+        request.put("VERB", "GET");
+        request.put("URI", "/log");
+        assertEquals("GetLogRouter", router.sendToRoute());
+    }
+
+    @Test
+    public void itSendsARequestToTheGetLogsRouter() throws IOException {
+        request.put("VERB", "GET");
+        request.put("URI", "/logs");
+        assertEquals("GetLogsRouter", router.sendToRoute());
     }
 
     //Figure out how to mock out Java file and Java path so that I can test any routes that depend on checking for a File.
