@@ -24,6 +24,7 @@ public class ConnectionHandler {
     public void run() throws IOException {
         System.out.println("+++++++++++++++++++++");
         String requestLines = io.readRequest();
+        System.out.println("The request lines are: " + "\r\n" + requestLines);
         RequestParser parser = new RequestParser(requestLines);
         RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
 

@@ -36,6 +36,8 @@ public class Router {
         routes.put(methodNotAllowed(), "MethodNotAllowed");
         routes.put(paramDecode(),      "DECODE");
         routes.put(getPatchFile(),     "GetPatchFileRouter");
+        routes.put(getLogRouter(),     "GetLogRouter");
+        routes.put(getLogsRouter(),    "GetLogsRouter");
         return routes;
     }
 
@@ -86,5 +88,13 @@ public class Router {
 
     private boolean getPatchFile() {
         return request.get("URI").equals("/patch-content.txt") && request.get("VERB").equals("GET");
+    }
+
+    private boolean getLogRouter() {
+        return request.get("URI").equals("/log") && request.get("VERB").equals("GET");
+    }
+
+    private boolean getLogsRouter() {
+        return request.get("URI").equals("/logs") && request.get("VERB").equals("GET");
     }
 }

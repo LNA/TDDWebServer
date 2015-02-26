@@ -37,6 +37,9 @@ public class RouteFactory {
         PartialRouter partialRouter                   = new PartialRouter(headBuilder, request);
         DecodeRouter decodeRouter                     = new DecodeRouter(headBuilder, request);
         GetPatchFileRouter getPatchFileRouter         = new GetPatchFileRouter(headBuilder, bodyBuilder, request);
+        GetLogRouter getLogRouter                     = new GetLogRouter(headBuilder, bodyBuilder);
+        GetLogsRouter getLogsRouter                   = new GetLogsRouter(headBuilder);
+
 
         //adds routes for the core
         routes.put("GET", getRouter);
@@ -56,6 +59,8 @@ public class RouteFactory {
         routes.put("PARTIAL",            partialRouter);
         routes.put("DECODE",             decodeRouter);
         routes.put("GetPatchFileRouter", getPatchFileRouter);
+        routes.put("GetLogRouter",       getLogRouter);
+        routes.put("GetLogsRouter",      getLogsRouter);
 
         return routes;
     }

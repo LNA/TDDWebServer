@@ -76,4 +76,10 @@ public class RouteFactoryTest {
         assertEquals(true, routes.containsKey("GetPatchFileRouter"));
         assertEquals(true, routes.get("GetPatchFileRouter") instanceof GetPatchFileRouter);
     }
+
+    @Test
+    public void itHasAGetLogeRoute() throws IOException {
+        assertEquals(true, routes.containsKey("GetLogRouter"));
+        assertEquals(true, routes.get("GetLogRouter") instanceof GetLogRouter);
+    }
 }
