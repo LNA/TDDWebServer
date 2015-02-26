@@ -9,9 +9,9 @@ public class ResponseBodyTest {
 
     @Test
     public void itGivesTheBody() throws IOException {
-        iBody bodyBuilder = new ResponseBody();
-        byte[] responseBody = bodyBuilder.buildResponseBody();
-        String body = new String(responseBody, UTF);
+        iBody responseBody = new ResponseBody();
+        byte[] response = responseBody.renderBody();
+        String body = new String(response, UTF);
         assertEquals(BLANK_LINE, body);
     }
 

@@ -1,8 +1,8 @@
 package javax.com.lallen.httpserver.core.routing;
 import org.junit.Before;
 import org.junit.Test;
-import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
-import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
+import javax.com.lallen.httpserver.mocks.MockResponseBody;
+import javax.com.lallen.httpserver.mocks.MockResponseHead;
 import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
@@ -24,12 +24,12 @@ public class PutRouterTest {
 
     @Before
     public void setUp() throws IOException {
-        headBuilder = new MockHeadBuilder();
-        bodyBuilder = new MockBodyBuilder();
+        headBuilder = new MockResponseHead();
+        bodyBuilder = new MockResponseBody();
         putRouter = new PutRouter(headBuilder, bodyBuilder);
-        responseHead = putRouter.buildResponseHead(90210);
+        responseHead = putRouter.renderHead(90210);
         Map<String,String> request = new HashMap<>();
-        responseBody = putRouter.buildResponseBody();
+        responseBody = putRouter.renderBody();
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

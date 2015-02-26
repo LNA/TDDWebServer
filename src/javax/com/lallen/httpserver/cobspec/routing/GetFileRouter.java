@@ -9,20 +9,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GetFileRouter implements iResponse {
-    private final iHeader headBuilder;
+    private final iHeader responseHead;
     private final Map<String, String> request;
 
-    public GetFileRouter(iHeader headBuilder, Map<String, String> request) {
-        this.headBuilder = headBuilder;
+    public GetFileRouter(iHeader responseHead, Map<String, String> request) {
+        this.responseHead = responseHead;
         this.request = request;
     }
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] renderBody() throws IOException {
         String file = request.get("DIRECTORY") + request.get("URI");
         Path filePath = Paths.get(file);
         byte[] body   = Files.readAllBytes(filePath);

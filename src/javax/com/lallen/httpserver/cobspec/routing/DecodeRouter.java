@@ -9,20 +9,20 @@ import java.net.URLDecoder;
 
 public class DecodeRouter implements iResponse {
 
-    private final iHeader headBuilder;
+    private final iHeader responseHead;
     private final Map<String, String> request;
 
-    public DecodeRouter(iHeader headBuilder, Map<String, String> request) {
-        this.headBuilder = headBuilder;
+    public DecodeRouter(iHeader responseHead, Map<String, String> request) {
+        this.responseHead = responseHead;
         this.request = request;
     }
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] renderBody() throws IOException {
         String decodedURI = URLDecoder.decode(request.get("URI"), "utf-8");
         String params = buildLine(decodedURI);
         byte[] body = params.getBytes();

@@ -5,25 +5,24 @@ import javax.com.lallen.httpserver.core.response.iBody;
 import javax.com.lallen.httpserver.core.response.iHeader;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
-import java.util.Map;
 
 public class DeleteRouter implements iResponse{
 
-    private final iHeader headBuilder;
-    private final iBody bodyBuilder;
+    private final iHeader responseHead;
+    private final iBody   responseBody;
 
-    public DeleteRouter(iHeader headBuilder, iBody bodyBuilder) {
-        this.headBuilder = headBuilder;
-        this.bodyBuilder = bodyBuilder;
+    public DeleteRouter(iHeader responseHead, iBody responseBody) {
+        this.responseHead = responseHead;
+        this.responseBody = responseBody;
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.OK);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.OK);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
-        return bodyBuilder.buildResponseBody();
+    public byte[] renderBody() throws IOException {
+        return responseBody.renderBody();
     }
 }

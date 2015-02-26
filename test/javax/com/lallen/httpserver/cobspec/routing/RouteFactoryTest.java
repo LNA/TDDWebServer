@@ -17,7 +17,7 @@ public class RouteFactoryTest {
 
     @Before
     public void setUp() throws IOException {
-        headBuilder = new HeadBuilder();
+        headBuilder = new ResponseHead();
         bodyBuilder = new ResponseBody();
         routeFactory = new RouteFactory(headBuilder, bodyBuilder, request);
         routes = routeFactory.buildRoutes();

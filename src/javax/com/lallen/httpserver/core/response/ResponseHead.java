@@ -2,10 +2,10 @@ package javax.com.lallen.httpserver.core.response;
 import javax.com.lallen.httpserver.core.constants.Response;
 import java.io.IOException;
 
-public class HeadBuilder implements iHeader {
+public class ResponseHead implements iHeader {
 
     @Override
-    public byte[] buildResponseHead(int port, String status) throws IOException {
+    public byte[] renderHead(int port, String status) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         appendLines(stringBuilder, port, status);
         String lines = stringBuilder.toString();

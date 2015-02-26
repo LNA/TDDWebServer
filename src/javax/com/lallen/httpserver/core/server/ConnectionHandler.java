@@ -4,7 +4,7 @@ import java.util.Map;
 import javax.com.lallen.httpserver.core.parsers.RequestParser;
 import javax.com.lallen.httpserver.core.request.RequestBuilder;
 import javax.com.lallen.httpserver.core.response.ResponseBody;
-import javax.com.lallen.httpserver.core.response.HeadBuilder;
+import javax.com.lallen.httpserver.core.response.ResponseHead;
 import javax.com.lallen.httpserver.cobspec.routing.RouteFactory;
 import javax.com.lallen.httpserver.cobspec.routing.Router;
 import javax.com.lallen.httpserver.core.response.iResponse;
@@ -29,10 +29,10 @@ public class ConnectionHandler {
         RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
 
         Map<String, String> request = requestBuilder.buildRequest();
-        HeadBuilder headBuilder   = new HeadBuilder();
+        ResponseHead responseHead = new ResponseHead();
         ResponseBody bodyBuilder   = new ResponseBody();
 
-        RouteFactory routeFactory = new RouteFactory(headBuilder, bodyBuilder, request);
+        RouteFactory routeFactory = new RouteFactory(responseHead, bodyBuilder, request);
         Map<String, iResponse> routes = routeFactory.buildRoutes();
         Router router = new Router(request);
         String requestedRoute = router.sendToRoute();
@@ -41,8 +41,8 @@ public class ConnectionHandler {
 
 
 
-        byte[] head = response.buildResponseHead(openSocket.getLocalPort());
-        byte[] body = response.buildResponseBody();
+        byte[] head = response.renderHead(openSocket.getLocalPort());
+        byte[] body = response.renderBody();
         io.writeResponse(head, body);
         System.out.println("+++++++++++++++++++++");
 

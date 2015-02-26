@@ -2,7 +2,7 @@ package javax.com.lallen.httpserver.cobspec.routing;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
+import javax.com.lallen.httpserver.mocks.MockResponseHead;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,15 +17,15 @@ public class AuthenticationRouterTest {
     public byte[] responseBody;
     public String head;
     public String body;
-    public MockHeadBuilder headBuilder;
+    public MockResponseHead headBuilder;
 
     @Before
     public void setUp() throws IOException {
-        headBuilder = new MockHeadBuilder();
+        headBuilder = new MockResponseHead();
         Map<String,String> request = new HashMap<>();
         authRouter = new AuthenticationRouter(headBuilder);
-        responseHead = authRouter.buildResponseHead(227);
-        responseBody = authRouter.buildResponseBody();
+        responseHead = authRouter.renderHead(227);
+        responseBody = authRouter.renderBody();
     }
 
     @Test

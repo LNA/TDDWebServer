@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.com.lallen.httpserver.core.response.iResponse;
-import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
-import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
+import javax.com.lallen.httpserver.mocks.MockResponseBody;
+import javax.com.lallen.httpserver.mocks.MockResponseHead;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,17 +17,17 @@ public class GetLogsRouterTest {
     public iResponse getLogsRouter;
     public byte[] responseHead;
     public String head;
-    public MockHeadBuilder headBuilder;
-    public MockBodyBuilder bodyBuilder;
+    public MockResponseHead headBuilder;
+    public MockResponseBody bodyBuilder;
 
     @Before
     public void setUp() throws IOException {
-        headBuilder    = new MockHeadBuilder();
-        bodyBuilder    = new MockBodyBuilder();
+        headBuilder    = new MockResponseHead();
+        bodyBuilder    = new MockResponseBody();
         Map<String,String> request = new HashMap<>();
 
         getLogsRouter = new GetLogsRouter(headBuilder);
-        responseHead   = getLogsRouter.buildResponseHead(227);
+        responseHead   = getLogsRouter.renderHead(227);
     }
 
     @Test

@@ -7,19 +7,19 @@ import java.util.Map;
 
 
 public class AuthenticationRouter implements iResponse {
-    private final iHeader headBuilder;
+    private final iHeader responseHead;
 
-    public AuthenticationRouter(iHeader headBuilder) {
-        this.headBuilder = headBuilder;
+    public AuthenticationRouter(iHeader responseHead) {
+        this.responseHead = responseHead;
     }
 
     @Override
-    public byte[] buildResponseHead(int port) throws IOException {
-        return headBuilder.buildResponseHead(port, Status.UNAUTHORIZED);
+    public byte[] renderHead(int port) throws IOException {
+        return responseHead.renderHead(port, Status.UNAUTHORIZED);
     }
 
     @Override
-    public byte[] buildResponseBody() throws IOException {
+    public byte[] renderBody() throws IOException {
         String body = "Authentication required";
         return body.getBytes();
     }
