@@ -24,8 +24,7 @@ public class DeleteRouterTest {
         bodyBuilder = new MockBodyBuilder();
         deleteRouter = new DeleteRouter(headBuilder, bodyBuilder);
         responseHead = deleteRouter.buildResponseHead(1999);
-        Map<String,String> request = new HashMap<>();
-        responseBody = deleteRouter.buildResponseBody(request);
+        responseBody = deleteRouter.buildResponseBody();
     }
 
     @Test

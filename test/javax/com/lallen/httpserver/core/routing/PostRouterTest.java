@@ -30,7 +30,7 @@ public class PostRouterTest {
         postRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = postRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
-        responseBody = postRouter.buildResponseBody(request);
+        responseBody = postRouter.buildResponseBody();
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

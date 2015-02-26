@@ -29,7 +29,7 @@ public class PatchFileRouterTest {
         patchRouter = new PatchFileRouter(headBuilder, bodyBuilder);
         responseHead = patchRouter.buildResponseHead(1999);
         Map<String,String> request = new HashMap<>();
-        responseBody = patchRouter.buildResponseBody(request);
+        responseBody = patchRouter.buildResponseBody();
     }
 
     @Test

@@ -21,7 +21,8 @@ public class GetFileRouterTest {
     @Before
     public void setUp() throws IOException {
         headBuilder  = new MockHeadBuilder();
-        fileRouter   = new GetFileRouter(headBuilder);
+        Map<String,String> request = new HashMap<>();
+        fileRouter   = new GetFileRouter(headBuilder, request);
         responseHead = fileRouter.buildResponseHead(227);
     }
 

@@ -5,6 +5,8 @@ import org.junit.Test;
 import javax.com.lallen.httpserver.core.response.iResponse;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 public class DecodeRouterTest {
@@ -13,11 +15,12 @@ public class DecodeRouterTest {
     public byte[] responseHead;
     public String head;
     public MockHeadBuilder headBuilder;
+    public Map<String, String> request;
 
     @Before
     public void setUp() throws IOException {
         headBuilder  = new MockHeadBuilder();
-        decodeRouter = new DecodeRouter(headBuilder);
+        decodeRouter = new DecodeRouter(headBuilder, request);
         responseHead = decodeRouter.buildResponseHead(227);
     }
 

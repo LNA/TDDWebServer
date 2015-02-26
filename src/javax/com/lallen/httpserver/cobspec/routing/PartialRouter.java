@@ -13,9 +13,11 @@ import java.util.Map;
 
 public class PartialRouter implements iResponse {
     private final iHeader headBuilder;
+    private final Map<String,String> request;
 
-    public PartialRouter(iHeader headBuilder) {
+    public PartialRouter(iHeader headBuilder, Map<String, String> request) {
         this.headBuilder = headBuilder;
+        this.request = request;
     }
 
     @Override
@@ -24,7 +26,7 @@ public class PartialRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+    public byte[] buildResponseBody() throws IOException {
         String fileOneString = request.get("PATH");
         Path fileOnePath     = Paths.get(fileOneString);
         byte[] body          = Files.readAllBytes(fileOnePath);

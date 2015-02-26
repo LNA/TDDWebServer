@@ -29,7 +29,7 @@ public class HeadRouterTest {
         headRouter = new HeadRouter(headBuilder, bodyBuilder);
         responseHead = headRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
-        responseBody = headRouter.buildResponseBody(request);
+        responseBody = headRouter.buildResponseBody();
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

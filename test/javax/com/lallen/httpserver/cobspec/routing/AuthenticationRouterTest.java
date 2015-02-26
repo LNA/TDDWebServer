@@ -25,7 +25,7 @@ public class AuthenticationRouterTest {
         Map<String,String> request = new HashMap<>();
         authRouter = new AuthenticationRouter(headBuilder);
         responseHead = authRouter.buildResponseHead(227);
-        responseBody = authRouter.buildResponseBody(request);
+        responseBody = authRouter.buildResponseBody();
     }
 
     @Test

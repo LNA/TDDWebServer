@@ -22,7 +22,7 @@ public class MethodNotAllowedRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+    public byte[] buildResponseBody() throws IOException {
         return bodyBuilder.buildResponseBody();
     }
 }
