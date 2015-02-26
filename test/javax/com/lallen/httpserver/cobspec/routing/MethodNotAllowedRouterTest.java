@@ -29,7 +29,7 @@ public class MethodNotAllowedRouterTest {
         methodNotAllowedRouter = new MethodNotAllowedRouter(headBuilder, bodyBuilder);
         responseHead = methodNotAllowedRouter.buildResponseHead(1999);
         Map<String,String> request = new HashMap<>();
-        responseBody = methodNotAllowedRouter.buildResponseBody(request);
+        responseBody = methodNotAllowedRouter.buildResponseBody();
     }
 
     @Test

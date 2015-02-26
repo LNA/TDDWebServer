@@ -19,7 +19,7 @@ public class AuthenticationRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+    public byte[] buildResponseBody() throws IOException {
         String body = "Authentication required";
         return body.getBytes();
     }

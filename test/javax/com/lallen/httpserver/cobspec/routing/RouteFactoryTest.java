@@ -2,10 +2,6 @@ package javax.com.lallen.httpserver.cobspec.routing;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.com.lallen.httpserver.cobspec.routing.MethodNotAllowedRouter;
-import javax.com.lallen.httpserver.cobspec.routing.PartialRouter;
-import javax.com.lallen.httpserver.cobspec.routing.RedirectRouter;
-import javax.com.lallen.httpserver.cobspec.routing.RouteFactory;
 import javax.com.lallen.httpserver.core.response.*;
 import javax.com.lallen.httpserver.core.routing.*;
 import java.io.IOException;
@@ -15,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class RouteFactoryTest {
     private RouteFactory routeFactory;
     private Map<String,iResponse> routes;
+    public Map<String, String> request;
     private iHeader headBuilder;
     private iBody  bodyBuilder;
 
@@ -22,7 +19,7 @@ public class RouteFactoryTest {
     public void setUp() throws IOException {
         headBuilder = new HeadBuilder();
         bodyBuilder = new BodyBuilder();
-        routeFactory = new RouteFactory(headBuilder, bodyBuilder);
+        routeFactory = new RouteFactory(headBuilder, bodyBuilder, request);
         routes = routeFactory.buildRoutes();
     }
 

@@ -18,9 +18,10 @@ public class PartialRouterTest {
     @Before
     public void setUp() throws IOException {
         headBuilder                = new MockHeadBuilder();
-        partialRouter              = new PartialRouter(headBuilder);
-        responseHead               = partialRouter.buildResponseHead(1999);
         Map<String,String> request = new HashMap<>();
+
+        partialRouter              = new PartialRouter(headBuilder, request);
+        responseHead               = partialRouter.buildResponseHead(1999);
     }
 
     @Test

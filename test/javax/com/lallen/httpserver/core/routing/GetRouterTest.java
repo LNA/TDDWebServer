@@ -1,5 +1,6 @@
 package javax.com.lallen.httpserver.core.routing;
 import org.junit.Before;
+import org.junit.Test;
 
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
@@ -20,18 +21,18 @@ public class GetRouterTest {
     @Before
     public void setUp() throws IOException {
         headBuilder = new MockHeadBuilder();
-        getRouter = new GetRouter(headBuilder);
-        responseHead = getRouter.buildResponseHead(1999);
-        Map<String,String> request = new HashMap<>();
-        responseBody = getRouter.buildResponseBody(request);
+
     }
-//
-//    @Test
-//    public void itGivesBehaviorOfTheHeadBuilder() throws IOException {
-//        head = new String(responseHead, UTF);
-//        assertEquals("The head has been constructed.", head);
-//    }
-//
+
+    @Test
+    public void itAdds404StatusToHeadWhenNoFilesFound() throws IOException {
+        Map<String,String> request = new HashMap<>();
+        request.put("PATH", "/wat");
+        getRouter = new GetRouter(headBuilder, request);
+        getRouter.buildResponseHead(999);
+        assertEquals(headBuilder.getSTATUS(), "404");
+    }
+
 //    @Test
 //    public void itGivesABodyWithFileLinks() throws IOException {
 //        body = new String(responseBody, UTF);

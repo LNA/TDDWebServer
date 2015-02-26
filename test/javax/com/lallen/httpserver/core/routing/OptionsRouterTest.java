@@ -28,8 +28,7 @@ public class OptionsRouterTest {
         bodyBuilder = new MockBodyBuilder();
         optionsRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = optionsRouter.buildResponseHead(4040);
-        Map<String,String> request = new HashMap<>();
-        responseBody = optionsRouter.buildResponseBody(request);
+        responseBody = optionsRouter.buildResponseBody();
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

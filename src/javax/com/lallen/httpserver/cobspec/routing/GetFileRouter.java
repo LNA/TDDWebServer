@@ -10,9 +10,11 @@ import java.nio.file.Paths;
 
 public class GetFileRouter implements iResponse {
     private final iHeader headBuilder;
+    private final Map<String, String> request;
 
-    public GetFileRouter(iHeader headBuilder) {
+    public GetFileRouter(iHeader headBuilder, Map<String, String> request) {
         this.headBuilder = headBuilder;
+        this.request = request;
     }
     @Override
     public byte[] buildResponseHead(int port) throws IOException {
@@ -20,7 +22,7 @@ public class GetFileRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+    public byte[] buildResponseBody() throws IOException {
         String file = request.get("DIRECTORY") + request.get("URI");
         Path filePath = Paths.get(file);
         byte[] body   = Files.readAllBytes(filePath);

@@ -5,6 +5,9 @@ import javax.com.lallen.httpserver.core.response.iResponse;
 import javax.com.lallen.httpserver.mocks.MockBodyBuilder;
 import javax.com.lallen.httpserver.mocks.MockHeadBuilder;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -20,7 +23,9 @@ public class GetPatchFileRouterTest {
     public void setUp() throws IOException {
         headBuilder    = new MockHeadBuilder();
         bodyBuilder    = new MockBodyBuilder();
-        getPatchFileRouter = new GetPatchFileRouter(headBuilder, bodyBuilder);
+        Map<String,String> request = new HashMap<>();
+
+        getPatchFileRouter = new GetPatchFileRouter(headBuilder, bodyBuilder, request);
         responseHead   = getPatchFileRouter.buildResponseHead(227);
     }
 

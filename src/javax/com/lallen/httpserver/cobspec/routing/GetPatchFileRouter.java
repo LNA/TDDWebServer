@@ -14,11 +14,12 @@ import java.nio.file.Paths;
 public class GetPatchFileRouter implements iResponse {
     private final iHeader headBuilder;
     private final iBody bodyBuilder;
+    private final Map<String,String> request;
 
-    public GetPatchFileRouter(iHeader headBuilder, iBody bodyBuilder) {
+    public GetPatchFileRouter(iHeader headBuilder, iBody bodyBuilder, Map<String, String> request) {
         this.headBuilder = headBuilder;
         this.bodyBuilder = bodyBuilder;
-
+        this.request = request;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class GetPatchFileRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
+    public byte[] buildResponseBody() throws IOException {
         if (!request.get("ETAG").equals(" ")) {
             System.out.println(" Etag is blank line");
             return patchContent();

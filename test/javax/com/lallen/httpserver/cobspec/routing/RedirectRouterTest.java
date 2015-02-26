@@ -30,7 +30,7 @@ public class RedirectRouterTest {
         redirectRouter = new OptionsRouter(headBuilder, bodyBuilder);
         responseHead = redirectRouter.buildResponseHead(90210);
         Map<String,String> request = new HashMap<>();
-        responseBody = redirectRouter.buildResponseBody(request);
+        responseBody = redirectRouter.buildResponseBody();
         head = new String(responseHead, UTF);
         body = new String(responseBody, UTF);
     }

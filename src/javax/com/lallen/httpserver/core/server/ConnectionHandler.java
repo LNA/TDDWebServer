@@ -31,14 +31,17 @@ public class ConnectionHandler {
         HeadBuilder headBuilder   = new HeadBuilder();
         BodyBuilder bodyBuilder   = new BodyBuilder();
 
-        RouteFactory routeFactory = new RouteFactory(headBuilder, bodyBuilder);
+        RouteFactory routeFactory = new RouteFactory(headBuilder, bodyBuilder, request);
         Map<String, iResponse> routes = routeFactory.buildRoutes();
         Router router = new Router(request);
         String requestedRoute = router.sendToRoute();
         System.out.println("The requestedRoute is: " + requestedRoute);
         iResponse response = routes.get(requestedRoute);
+
+
+
         byte[] head = response.buildResponseHead(openSocket.getLocalPort());
-        byte[] body = response.buildResponseBody(request);
+        byte[] body = response.buildResponseBody();
         io.writeResponse(head, body);
         System.out.println("+++++++++++++++++++++");
 

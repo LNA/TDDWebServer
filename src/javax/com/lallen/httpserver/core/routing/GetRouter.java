@@ -10,9 +10,11 @@ import java.io.File;
 
 public class GetRouter implements iResponse {
     private final iHeader headBuilder;
+    private final Map<String,String> request;
 
-    public GetRouter(iHeader headBuilder) {
+    public GetRouter(iHeader headBuilder, Map<String, String> request) {
         this.headBuilder = headBuilder;
+        this.request = request;
     }
 
     @Override
@@ -21,16 +23,16 @@ public class GetRouter implements iResponse {
     }
 
     @Override
-    public byte[] buildResponseBody(Map<String, String> request) throws IOException {
-        File[] listOfFiles = findFiles(request);
-        if (noFilesFound(listOfFiles)) {
+    public byte[] buildResponseBody() throws IOException {
+        File[] listOfFiles = findFiles();
+        if (noFilesFound(findFiles())) {
             return blankPage();
         } else {
             return bodyLinks(listOfFiles);
         }
     }
 
-    private File[] findFiles(Map<String, String> request) throws IOException {
+    private File[] findFiles() throws IOException {
         String path = request.get("PATH");
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
