@@ -22,30 +22,34 @@ public class ConnectionHandler {
     }
 
     public void run() throws IOException {
-        System.out.println("+++++++++++++++++++++");
-        String requestLines = io.readRequest();
-        System.out.println("The request lines are: " + "\r\n" + requestLines);
-        RequestParser parser = new RequestParser(requestLines);
+        Map<String, String> request = generateRequest();
+        iResponse response          = generateResponse(request);
+        write(response);
+        openSocket.close();
+    }
+
+    public Map<String, String> generateRequest() throws IOException {
+        String requestLines           = io.readRequest();
+        RequestParser parser          = new RequestParser(requestLines);
         RequestBuilder requestBuilder = new RequestBuilder(parser, directory);
+        Map<String, String> request   = requestBuilder.buildRequest();
+        return request;
+    }
 
-        Map<String, String> request = requestBuilder.buildRequest();
-        ResponseHead responseHead = new ResponseHead();
-        ResponseBody bodyBuilder   = new ResponseBody();
-
-        RouteFactory routeFactory = new RouteFactory(responseHead, bodyBuilder, request);
+    public iResponse generateResponse(Map<String, String> request) throws IOException {
+        ResponseHead responseHead     = new ResponseHead();
+        ResponseBody bodyBuilder      = new ResponseBody();
+        RouteFactory routeFactory     = new RouteFactory(responseHead, bodyBuilder, request);
         Map<String, iResponse> routes = routeFactory.buildRoutes();
-        Router router = new Router(request);
-        String requestedRoute = router.sendToRoute();
-        System.out.println("The requestedRoute is: " + requestedRoute);
-        iResponse response = routes.get(requestedRoute);
+        Router router                 = new Router(request);
+        String requestedRoute         = router.sendToRoute();
+        iResponse response            = routes.get(requestedRoute);
+        return response;
+    }
 
-
-
+    public void write(iResponse response) throws IOException {
         byte[] head = response.renderHead(openSocket.getLocalPort());
         byte[] body = response.renderBody();
         io.writeResponse(head, body);
-        System.out.println("+++++++++++++++++++++");
-
-        openSocket.close();
     }
 }

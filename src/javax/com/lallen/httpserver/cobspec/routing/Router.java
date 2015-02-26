@@ -1,8 +1,6 @@
 package javax.com.lallen.httpserver.cobspec.routing;
-import javax.com.lallen.httpserver.cobspec.constants.ETAG;
 import javax.com.lallen.httpserver.cobspec.constants.URI;
 import javax.com.lallen.httpserver.core.constants.Request;
-import javax.com.lallen.httpserver.core.constants.Response;
 import javax.com.lallen.httpserver.core.constants.Routes;
 import java.io.File;
 import java.util.HashMap;
@@ -17,7 +15,6 @@ public class Router {
 
     public String sendToRoute() {
         Map<Boolean, String> routes = buildRoutes();
-        System.out.println("Request : " + request);
 
         if (noRouteFound(routes)) {
             return request.get(Request.VERB);
