@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.com.lallen.httpserver.core.parsers.RequestParser;
 import javax.com.lallen.httpserver.core.request.RequestBuilder;
-import javax.com.lallen.httpserver.core.response.BodyBuilder;
+import javax.com.lallen.httpserver.core.response.ResponseBody;
 import javax.com.lallen.httpserver.core.response.HeadBuilder;
 import javax.com.lallen.httpserver.cobspec.routing.RouteFactory;
 import javax.com.lallen.httpserver.cobspec.routing.Router;
@@ -30,7 +30,7 @@ public class ConnectionHandler {
 
         Map<String, String> request = requestBuilder.buildRequest();
         HeadBuilder headBuilder   = new HeadBuilder();
-        BodyBuilder bodyBuilder   = new BodyBuilder();
+        ResponseBody bodyBuilder   = new ResponseBody();
 
         RouteFactory routeFactory = new RouteFactory(headBuilder, bodyBuilder, request);
         Map<String, iResponse> routes = routeFactory.buildRoutes();
